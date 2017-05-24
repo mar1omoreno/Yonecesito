@@ -1,0 +1,18 @@
+<!-- Header para usuarios NO logeados -->
+<div class="row">
+	<div class="col-md-4 blueBCK paddingBottom">
+		<a href="#">
+			<p class="text-right">					
+				<%= link_to image_tag("logoblanco.png", :alt => "yonecesito", :title => "yonecesito", style:" width:167px; height:31px;"),root_path%>				
+			</p>
+		</a>										
+	</div>
+	<div class="col-md-4 col-md-push-3">
+		<p class="text-right blue">¿Tienes dudas? llámanos al +52 (55)41648979</p>
+		<% if !@esconder_botones_login_entrar %>
+		<p class="text-right" style="margin-top:-1px;" >
+		    <%= link_to "REGISTRATE",  inicio_registrate_path, :class=>"btn btn-default " %><%= link_to "ENTRA",  inicio_entra_path, :class=>"btn btn-primary " %>
+		</p>
+		<% end %>
+	</div>
+</div>

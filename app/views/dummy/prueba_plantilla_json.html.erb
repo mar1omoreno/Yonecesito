@@ -1,0 +1,74 @@
+<%= form_for @miSolicitud, url: {action: "guardar_prueba_plantilla_json"}, html: {method: "post", class: ""} do |f| %>
+    <div>Contenido del JSON  es "<%= @plantilla_json %>" </div>
+    <% 
+    # Procesamiento de JSON de cada pregunta
+    indicePregunta = 0
+    @plantilla.each do |pregunta| #inicia ciclo de procesamiento de preguntas
+        name = "respuestas["+indicePregunta.to_s+"]" # atributo html name en el input a generar
+    %>
+        <div class="form-inline pregunta">
+            <label><%= pregunta["titulo"]%></label><br>
+            <%= hidden_field_tag name+"[tipo]", pregunta["tipo"], {class: 'form-control'} %>
+        
+        <% if pregunta["tipo"] == "texto" #inician if's de tipo %>
+            <%= text_field_tag name+"[opciones][]", '', {class: 'form-control'} %>
+            
+        <% elsif pregunta["tipo"] == "radio" || pregunta["tipo"] == "checkbox"
+            opciones = pregunta["opciones"] #sacamos opciones declaradas
+            hayOtro = pregunta["opcion_otro"] == 1 #descubrimos si se solicitó crear opción "Otro"
+            # Como radios y checkbox se generan igual solo definimos qué método usaremos para pintar opciones
+            funcionInput = pregunta["tipo"] == "radio" ? method(:radio_button_tag) : method(:check_box_tag)
+            opciones.each do |opcion| #inicia ciclo de procesamiento de opciones
+            %>
+                <label><%= funcionInput.call name+"[opciones][]", opcion, false, {class: 'form-control'} %><%=opcion%></label><br>
+            <% end #fin ciclo opciones %>
+            
+            <% if hayOtro #Si se debe poner opción textbox %>
+                <label><%= funcionInput.call name+"[opciones][]", 'Otro', false, {class: 'form-control'} %>Otro
+                <%= text_field_tag name+"[otro]", '', {class: 'form-control'} %>
+                </label>
+            <% end #fin ciclo de opciones %>
+            
+        <% elsif pregunta["tipo"] == "select" 
+            opciones = pregunta["opciones"] #sacamos opciones declaradas
+        %>
+            <%= select_tag name+"[opciones][]", options_for_select(opciones), {class: 'form-control'} %>
+        
+        <% end #fin if's de tipo %>
+        </div>
+    <% 
+        indicePregunta += 1
+    end #fin ciclo preguntas %>
+
+    <%= f.submit "Guardar", {class: 'btn btn-primary botonLargo', id: 'btnGuardar'} %>
+
+<% end #fin formulario %>
+<script>
+    $(document).ready(function(){
+        $("#btnGuardar").click(function(e){
+
+            var pendientes = [];
+            
+            $(".pregunta").each( function(index, div){
+                var tipo = $("input[type=hidden]", div);
+                if(tipo.val()=="texto"){
+                    if( $("input[type=text]", div).val().trim() == "")
+                        pendientes.push( $("label", div).first().text() );
+                /*}else if(tipo.val()=="select"){
+                    if( $("select", div).val() == "")
+                        alert( $("label", div).first().text() )*/
+                }else if( tipo.val()=="radio" || tipo.val()=="checkbox" ){
+                    if( $(":checked", div).length <= 0 )
+                        pendientes.push( $("label", div).first().text() );
+                }
+            });
+            
+            if( pendientes.length >0 ){
+                e.preventDefault();
+                alert("Hay preguntas por responder:"+JSON.stringify(pendientes) );
+            }
+            
+        });
+        
+    });
+</script>

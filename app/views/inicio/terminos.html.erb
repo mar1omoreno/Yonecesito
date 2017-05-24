@@ -1,0 +1,1438 @@
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:1;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:Georgia;
+	panose-1:2 4 5 2 5 4 5 2 3 3;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:auto;
+	mso-font-signature:0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:Arial;
+	color:black;}
+p.MsoNormalCxSpFirst, li.MsoNormalCxSpFirst, div.MsoNormalCxSpFirst
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:Arial;
+	color:black;}
+p.MsoNormalCxSpMiddle, li.MsoNormalCxSpMiddle, div.MsoNormalCxSpMiddle
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:Arial;
+	color:black;}
+p.MsoNormalCxSpLast, li.MsoNormalCxSpLast, div.MsoNormalCxSpLast
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:Arial;
+	color:black;}
+h1
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	margin-top:24.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:1;
+	font-size:18.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;
+	mso-font-kerning:0pt;
+	mso-bidi-font-weight:normal;}
+h1.CxSpFirst
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:24.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:1;
+	font-size:18.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;
+	mso-font-kerning:0pt;
+	mso-bidi-font-weight:normal;}
+h1.CxSpMiddle
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:1;
+	font-size:18.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;
+	mso-font-kerning:0pt;
+	mso-bidi-font-weight:normal;}
+h1.CxSpLast
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:1;
+	font-size:18.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;
+	mso-font-kerning:0pt;
+	mso-bidi-font-weight:normal;}
+h2
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	margin-top:18.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;
+	mso-bidi-font-weight:normal;}
+h2.CxSpFirst
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:18.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;
+	mso-bidi-font-weight:normal;}
+h2.CxSpMiddle
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;
+	mso-bidi-font-weight:normal;}
+h2.CxSpLast
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;
+	mso-bidi-font-weight:normal;}
+h3
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	margin-top:14.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:3;
+	font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	mso-bidi-font-weight:normal;}
+h3.CxSpFirst
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:14.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:3;
+	font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	mso-bidi-font-weight:normal;}
+h3.CxSpMiddle
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:3;
+	font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	mso-bidi-font-weight:normal;}
+h3.CxSpLast
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:3;
+	font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	mso-bidi-font-weight:normal;}
+h4
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:2.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:4;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+h4.CxSpFirst
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:4;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+h4.CxSpMiddle
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:4;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+h4.CxSpLast
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:2.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:4;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+h5
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	margin-top:11.0pt;
+	margin-right:0cm;
+	margin-bottom:2.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:5;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	mso-bidi-font-weight:normal;}
+h5.CxSpFirst
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:11.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:5;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	mso-bidi-font-weight:normal;}
+h5.CxSpMiddle
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:5;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	mso-bidi-font-weight:normal;}
+h5.CxSpLast
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:2.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:5;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	mso-bidi-font-weight:normal;}
+h6
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	margin-top:10.0pt;
+	margin-right:0cm;
+	margin-bottom:2.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:6;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+h6.CxSpFirst
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:10.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:6;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+h6.CxSpMiddle
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:6;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+h6.CxSpLast
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:2.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	mso-outline-level:6;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	margin-top:24.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:36.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:Arial;
+	color:black;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:24.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:36.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:Arial;
+	color:black;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:36.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:Arial;
+	color:black;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:36.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:Arial;
+	color:black;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	margin-top:18.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:24.0pt;
+	font-family:Georgia;
+	mso-fareast-font-family:Georgia;
+	mso-bidi-font-family:Georgia;
+	color:#666666;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoSubtitleCxSpFirst, li.MsoSubtitleCxSpFirst, div.MsoSubtitleCxSpFirst
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:18.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:24.0pt;
+	font-family:Georgia;
+	mso-fareast-font-family:Georgia;
+	mso-bidi-font-family:Georgia;
+	color:#666666;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoSubtitleCxSpMiddle, li.MsoSubtitleCxSpMiddle, div.MsoSubtitleCxSpMiddle
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:24.0pt;
+	font-family:Georgia;
+	mso-fareast-font-family:Georgia;
+	mso-bidi-font-family:Georgia;
+	color:#666666;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoSubtitleCxSpLast, li.MsoSubtitleCxSpLast, div.MsoSubtitleCxSpLast
+	{mso-style-unhide:no;
+	mso-style-parent:normal;
+	mso-style-next:normal;
+	mso-style-type:export-only;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:24.0pt;
+	font-family:Georgia;
+	mso-fareast-font-family:Georgia;
+	mso-bidi-font-family:Georgia;
+	color:#666666;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.normal, li.normal, div.normal
+	{mso-style-name:normal;
+	mso-style-unhide:no;
+	mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:Arial;
+	color:black;}
+p.normalCxSpFirst, li.normalCxSpFirst, div.normalCxSpFirst
+	{mso-style-name:normalCxSpFirst;
+	mso-style-unhide:no;
+	mso-style-parent:"";
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:Arial;
+	color:black;}
+p.normalCxSpMiddle, li.normalCxSpMiddle, div.normalCxSpMiddle
+	{mso-style-name:normalCxSpMiddle;
+	mso-style-unhide:no;
+	mso-style-parent:"";
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:Arial;
+	color:black;}
+p.normalCxSpLast, li.normalCxSpLast, div.normalCxSpLast
+	{mso-style-name:normalCxSpLast;
+	mso-style-unhide:no;
+	mso-style-parent:"";
+	mso-style-type:export-only;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:115%;
+	mso-pagination:none;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:Arial;
+	color:black;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	mso-ascii-font-family:Arial;
+	mso-fareast-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	color:black;}
+.MsoPapDefault
+	{mso-style-type:export-only;
+	line-height:115%;
+	mso-pagination:none;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;
+	mso-header-margin:36.0pt;
+	mso-footer-margin:36.0pt;
+	mso-page-numbers:1;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1245259399;
+	mso-list-template-ids:-875522862;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\25CF;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:18.0pt;
+	mso-ansi-font-size:11.0pt;
+	mso-bidi-font-size:11.0pt;
+	mso-ascii-font-family:Arial;
+	mso-fareast-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	font-variant:normal !important;
+	color:black;
+	mso-ansi-font-weight:normal;
+	mso-ansi-font-style:normal;
+	text-decoration:none;
+	text-underline:none;
+	text-decoration:none;
+	text-line-through:none;
+	vertical-align:baseline;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:\25CB;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:54.0pt;
+	mso-ansi-font-size:11.0pt;
+	mso-bidi-font-size:11.0pt;
+	mso-ascii-font-family:Arial;
+	mso-fareast-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	font-variant:normal !important;
+	color:black;
+	mso-ansi-font-weight:normal;
+	mso-ansi-font-style:normal;
+	text-decoration:none;
+	text-underline:none;
+	text-decoration:none;
+	text-line-through:none;
+	vertical-align:baseline;}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\25A0;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:90.0pt;
+	mso-ansi-font-size:11.0pt;
+	mso-bidi-font-size:11.0pt;
+	mso-ascii-font-family:Arial;
+	mso-fareast-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	font-variant:normal !important;
+	color:black;
+	mso-ansi-font-weight:normal;
+	mso-ansi-font-style:normal;
+	text-decoration:none;
+	text-underline:none;
+	text-decoration:none;
+	text-line-through:none;
+	vertical-align:baseline;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\25CF;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:126.0pt;
+	mso-ansi-font-size:11.0pt;
+	mso-bidi-font-size:11.0pt;
+	mso-ascii-font-family:Arial;
+	mso-fareast-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	font-variant:normal !important;
+	color:black;
+	mso-ansi-font-weight:normal;
+	mso-ansi-font-style:normal;
+	text-decoration:none;
+	text-underline:none;
+	text-decoration:none;
+	text-line-through:none;
+	vertical-align:baseline;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\25CB;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:162.0pt;
+	mso-ansi-font-size:11.0pt;
+	mso-bidi-font-size:11.0pt;
+	mso-ascii-font-family:Arial;
+	mso-fareast-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	font-variant:normal !important;
+	color:black;
+	mso-ansi-font-weight:normal;
+	mso-ansi-font-style:normal;
+	text-decoration:none;
+	text-underline:none;
+	text-decoration:none;
+	text-line-through:none;
+	vertical-align:baseline;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\25A0;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:198.0pt;
+	mso-ansi-font-size:11.0pt;
+	mso-bidi-font-size:11.0pt;
+	mso-ascii-font-family:Arial;
+	mso-fareast-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	font-variant:normal !important;
+	color:black;
+	mso-ansi-font-weight:normal;
+	mso-ansi-font-style:normal;
+	text-decoration:none;
+	text-underline:none;
+	text-decoration:none;
+	text-line-through:none;
+	vertical-align:baseline;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\25CF;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:234.0pt;
+	mso-ansi-font-size:11.0pt;
+	mso-bidi-font-size:11.0pt;
+	mso-ascii-font-family:Arial;
+	mso-fareast-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	font-variant:normal !important;
+	color:black;
+	mso-ansi-font-weight:normal;
+	mso-ansi-font-style:normal;
+	text-decoration:none;
+	text-underline:none;
+	text-decoration:none;
+	text-line-through:none;
+	vertical-align:baseline;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\25CB;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:270.0pt;
+	mso-ansi-font-size:11.0pt;
+	mso-bidi-font-size:11.0pt;
+	mso-ascii-font-family:Arial;
+	mso-fareast-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	font-variant:normal !important;
+	color:black;
+	mso-ansi-font-weight:normal;
+	mso-ansi-font-style:normal;
+	text-decoration:none;
+	text-underline:none;
+	text-decoration:none;
+	text-line-through:none;
+	vertical-align:baseline;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\25A0;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:306.0pt;
+	mso-ansi-font-size:11.0pt;
+	mso-bidi-font-size:11.0pt;
+	mso-ascii-font-family:Arial;
+	mso-fareast-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	font-variant:normal !important;
+	color:black;
+	mso-ansi-font-weight:normal;
+	mso-ansi-font-style:normal;
+	text-decoration:none;
+	text-underline:none;
+	text-decoration:none;
+	text-line-through:none;
+	vertical-align:baseline;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+<p class=MsoTitle><a name=h.gy5oin17sszy></a>Términos y Condiciones</p>
+
+<p class=normal style='text-align:justify'>Lea cuidadosamente los siguientes
+Términos y Condiciones de uso del portal ya que al hacer uso del Sitio y sus
+Servicios, éstos constituyen un acuerdo legal entre el usuario y <span
+class=SpellE>YoNecesito</span>.<span style='mso-spacerun:yes'>  </span>Haciendo
+clic en el botón “Acepto términos y condiciones” el usuario acepta los
+lineamientos alcances y limitaciones de estos términos y condiciones de
+uso.<span style='mso-spacerun:yes'>  </span>En caso de no aceptar los términos
+y condiciones<span style='mso-spacerun:yes'>  </span>de este acuerdo, el
+usuario no será capaz de utilizar los servicios ofrecidos.</p>
+
+<h1 style='text-align:justify'><a name=h.700hlusmexhq></a><span class=SpellE>YoNecesito</span>
+conecta Clientes con Talentos Profesionales</h1>
+
+<p class=normal style='text-align:justify'>YoNecesito.mx es una plataforma de
+comunicación que permite la conexión entre individuos que buscan resolver
+proyectos de servicios (“Clientes”) y/o individuos que buscan resolver
+proyectos de servicios (“Talento”).<span style='mso-spacerun:yes'>  </span>Se
+referirá como “Usuarios” a los “Clientes” y “Talentos” de manera conjunta. Los
+proyectos de servicios requeridos por Clientes y que serán realizadas por
+Talentos se les llamará “Proyectos”.</p>
+
+<h1 style='text-align:justify'><a name=h.c4mqvznqu45></a><span class=SpellE>YoNecesito</span>
+sirve solamente como vía de comunicación</h1>
+
+<p class=normal style='text-align:justify'>Este portal yonecesito.mx funge
+solamente como vía de comunicación entre Clientes y Talentos.<span
+style='mso-spacerun:yes'>  </span>El servicio de yonecesito.mx consiste
+únicamente en establecer la conexión entre las partes, proveyendo una
+plataforma donde se facilitan los acuerdos de negocios entre las 2 partes, así
+como asistencia técnica y soporte a los usuarios sobre el sitio web.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'><span
+class=SpellE>YoNecesito</span> no toma parte en los acuerdos que se formen
+entre los usuarios.<span style='mso-spacerun:yes'>  </span><span class=SpellE>YoNecesito</span>
+no apoya a ninguno de los usuarios.<span style='mso-spacerun:yes'>  </span><span
+class=SpellE>YoNecesito</span> no tiene conocimiento de sus Usuarios de manera
+directa, por lo que no necesariamente conoce a los Clientes o Talentos de
+manera personal.<span style='mso-spacerun:yes'>  </span>Por lo que <span
+class=SpellE>YoNecesito</span> no tiene control sobre la calidad, puntualidad,
+legalidad, falla, o cualquier otro aspecto medible que sea provisto por
+cualquiera de sus usuarios.<span style='mso-spacerun:yes'>  </span><span
+class=SpellE>YoNecesito</span> no toma representación en la fiabilidad,
+actualidad o exactitud de los Proyectos publicados o realizadas por los
+usuarios del Sitio.<span style='mso-spacerun:yes'>  </span></p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'><span
+class=SpellE>YoNecesito</span> realiza un filtrado de Talentos restringido a
+profesionales de servicios que presten dichas labores bajo <span class=SpellE>estandares</span>
+mínimos de calidad, esto para mayor seguridad del Cliente pero no se puede
+garantizar que dichos usuarios sean quienes aseguran ser.<span
+style='mso-spacerun:yes'>  </span>Por lo que al interactuar con otros usuarios
+se debe actuar con cuidado y bajo el sentido común de proteger la propiedad y
+seguridad personal, tal como se haría al interactuar con alguna persona que no
+se conoce.<span style='mso-spacerun:yes'>  </span>De acuerdo con lo anterior <span
+class=SpellE>YoNecesito</span> no puede hacerse responsable por la conducta de
+algún Cliente o Talento, cualquier reclamo, lesión, daño o costo del reemplazo
+de bienes o servicios procedentes de la conexión de usuarios con el uso del
+servicio.</p>
+
+<h1 style='text-align:justify'><a name=h.dnr0do6ftzh7></a>Clientes</h1>
+
+<p class=normal style='text-align:justify'>Son usuarios del portal <span
+class=SpellE>YoNecesito</span> que pueden publicar proyectos que puedan ser
+realizados.<span style='mso-spacerun:yes'>  </span>Cualquiera que tenga 18 años
+o más y desee tener Proyectos realizados por Talentos podrá ser un Cliente.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Todos los clientes
+deberán proveer la información de tarjeta de crédito al proveedor de pagos por
+Internet designado, para así poder realizar el pago de la recompensa al
+Talento.<span style='mso-spacerun:yes'>  </span>Por cada Proyecto completado el
+Cliente deberá pagar una recompensa al Talento en turno, tomando en cuenta
+cualquier reembolso si éste aplicará.</p>
+
+<h1 style='text-align:justify'><a name=h.dy4us5yscitf></a>Talento</h1>
+
+<p class=normal style='text-align:justify'>Son usuarios del portal
+yonecesito.mx que pueden aceptar y realizar proyectos de servicios.<span
+style='mso-spacerun:yes'>  </span>Cualquier persona inscrita como proveedor de
+servicios que cumpla con los requerimientos mínimos de calidad puede
+convertirse en un Talento.<span style='mso-spacerun:yes'>  </span>Tras el
+registro del usuario como Talento, el portal mandará un correo electrónico a la
+dirección provista por el Talento, donde se le pedirá identificaciones que lo
+acrediten como proveedor profesional de servicios, esto puede incluir pero no
+limitarse a IFE, comprobante de domicilio, carta de antecedentes no penales,
+referencias y recomendaciones tanto laborales como personales, Video de
+presentación y documento oficial que lo acredite como profesional de <span
+class=GramE>servicios .</span><span style='mso-spacerun:yes'>  </span>Tras la
+validación, el Talento es libre de aplicar y aceptar Proyectos de servicios en
+el Sitio Web.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Los Talentos son
+completamente responsables por el pago de los impuestos asociados con los
+Proyectos de servicios que decidan realizar para <span class=SpellE>cadaa</span>
+cliente.<span style='mso-spacerun:yes'>  </span>Los Talentos en <b
+style='mso-bidi-font-weight:normal'>ningún momento</b> son agentes o empleados
+de <span class=SpellE>YoNecesito</span>.<span style='mso-spacerun:yes'> 
+</span>Por lo que el uso del servicio web no implica ningún tipo de relación
+como agencia de empleo, asociación, operación conjunta, seguro social o
+cualquier tipo de relación empleado - empleador.</p>
+
+<h1 style='text-align:justify'><a name=h.1n6d3swn88zw></a>Proyectos de servicio</h1>
+
+<p class=normal style='text-align:justify'>Los proyectos de servicios son
+requerimientos, labores, quehaceres, o cualquier otro servicio solicitado por
+el Cliente dentro del Sitio Web.<span style='mso-spacerun:yes'>  </span>Los
+Proyectos de servicios son acuerdos específicamente entre Clientes y Talentos. <span
+class=SpellE>YoNecesito</span> no toma parte de dichos<span
+style='mso-spacerun:yes'>  </span>acuerdos. Y por lo tanto la <span
+class=SpellE>YoNecesito</span> no se hará responsable por las acciones que
+tomen los Clientes o Talentos, por el fallo en la realización del Proyecto de
+servicio o el fallo en el pago acordado por ambas partes.</p>
+
+<h2 style='text-align:justify'><a name=h.5tj4mzm1ejpx></a>a) Publicar Proyectos
+de servicio</h2>
+
+<p class=normal style='text-align:justify'>Se define como el requerimiento para
+la realización de una actividad de mandado, labor, quehacer u otro
+servicio.<span style='mso-spacerun:yes'>  </span>Se realiza a través de las
+secciones de Solicitar Servicio del Sitio Web. Toda actividad debe ser una
+actividad legal sujeta a los siguientes términos.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'><span
+class=SpellE>YoNecesito</span> se reserva el derecho, pero no asume ninguna
+responsabilidad de (a) remover cualquier material publicado en el Sitio Web de <span
+class=SpellE>YoNecesito</span>, a completa discreción de considerar
+inconsistente e incompatible el contenido del Proyecto de servicios con los
+acuerdos aquí mencionados, incluyendo cualquier material que le sea notificado
+a <span class=SpellE>YoNecesito</span>, o que tenga razón para creer que
+infrinja un daño contra derechos de autor o constituya una actividad
+ilegal.<span style='mso-spacerun:yes'>  </span>Así como (b) editar o traducir
+el extracto o contenido publicado.<span style='mso-spacerun:yes'>  </span>De la
+misma manera, <span class=SpellE>YoNecesito</span> no es responsable de
+monitorear los Proyectos de servicios publicados para asegurar su legitimidad,
+así como <span class=SpellE>YoNecesito</span> no será responsable de la
+existencia de Proyectos de servicios ilegales.</p>
+
+<h2 style='text-align:justify'><a name=h.x4cce3h03mvt></a>b) Pago</h2>
+
+<p class=normal style='text-align:justify'>El Pago es el valor monetario que el
+Cliente paga al Talento por la realización aceptable de un Proyecto.<span
+style='mso-spacerun:yes'>  </span>Todos los proyectos publicados indicarán el
+pago que el Cliente pretenda pagar al Talento que complete el Proyecto, sin
+embargo el valor final del Pago podrá variar a discreción de cada oferta
+realizada por los Talentos interesados en el Proyecto en curso.</p>
+
+<h2 style='text-align:justify'><a name=h.ri0suursfywl></a>c) Otorgar un
+Proyecto a un Talento</h2>
+
+<p class=normal style='text-align:justify'>Al momento de publicar un Proyecto
+con un Pago determinado, el Cliente expresa su deseo por seleccionar alguno de
+los Talentos que apliquen a dicha Proyecto.<span style='mso-spacerun:yes'> 
+</span>El Cliente recibirá ofertas por un valor menor, igual o mayor al
+estimado.<span style='mso-spacerun:yes'>  </span>Y es el Cliente quien decidirá
+qué oferta es la que más le convenza en base a <span class=SpellE>a</span>) el
+perfil del Talento que aplicó a dicho Proyecto b) el historial del Talento que
+aplicó a dicho Proyecto, c) el Total de la oferta hecha por el Talento d)
+diálogos intercambiados a través<span style='mso-spacerun:yes'>  </span>del
+chat que acompaña a la publicación de cada <span class=GramE>Proyecto(</span>opcionales).</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Una vez que el
+Cliente ha recibido por lo menos una oferta, podrá decidir el dar la
+oportunidad al Talento de su preferencia, de realizar dicho Proyecto ya sea
+poniéndose en contacto directo o a través del botón “Aceptar Talento”.<span
+style='mso-spacerun:yes'>  </span>Al aceptar la oferta de un Talento el Cliente
+está de acuerdo en aceptar un acuerdo formal de negocios con dicho
+Talento,<span style='mso-spacerun:yes'>  </span>Así como realizar el pago
+acordado y cualquier gasto que se genere de la realización del Proyecto,
+siempre y cuando el<span style='mso-spacerun:yes'>  </span>Proyecto se
+complete.<span style='mso-spacerun:yes'>  </span>El Cliente deberá proceder con
+el pago de la manera que más le convenga llegando a un acuerdo con el Talento.<span
+style='mso-spacerun:yes'>  </span>La plataforma <span class=SpellE>YoNecesito</span>
+en ningún momento<span style='mso-spacerun:yes'>  </span>retendrá el pago,
+simplemente funge como plataforma de comunicación. </p>
+
+<h2 style='text-align:justify'><a name=h.92rzbj4crcje></a>e) Ofertar y aplicar
+a un Proyecto</h2>
+
+<p class=normal style='text-align:justify'>Al Ofertar y aplicar por un
+Proyecto, el Talento está de acuerdo en aceptar un acuerdo formal de negocios
+con el Cliente para llevar a cabo el Proyecto asignado y recibir el pago<span
+style='mso-spacerun:yes'>  </span>descrito por completar dicho Proyecto. Los
+Talentos no deberán aceptar Proyectos que les haga creer que son ilegales. Si
+el Talento se encuentra con algún Proyecto que levante sospechas de ilegalidad
+se le pide por favor que la notifique a <span class=SpellE>YoNecesito</span>
+con la herramienta proporcionada en cada Proyecto publicado que destaca con la
+leyenda de “Reportar Proyecto como sospechoso”.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Una vez que el
+Talento sea seleccionado para realizar un Proyecto, este es responsable de
+completar la Proyecto antes de alcanzar la fecha límite, que es indicada por el
+Cliente al publicar el Proyecto. La falla continua de Proyectos y malas
+calificaciones puede llevar a la suspensión del uso de Servicios. </p>
+
+<h2 style='text-align:justify'><a name=h.8zrfmdhdc0rv></a>f) Proyectos
+Completados</h2>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Las Proyectos
+serán considerados Completadas únicamente cuando han sido confirmadas como
+completadas por causa del Cliente o del Sistema.<span
+style='mso-spacerun:yes'>  </span>El cliente tendrá la capacidad de finalizar y
+calificar al Talento seleccionado, esta calificación es un puntaje de
+representado con 5 estrellas donde el puntaje máximo por la realización del
+proyecto son 5 estrellas.<span style='mso-spacerun:yes'>  </span>Así mismo
+cuenta con un campo de texto para dejar retroalimentación del servicio.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Una vez calificado
+por el Cliente, el Talento tendrá la posibilidad de calificar a su contraparte,
+por el mismo sistema de 5 estrellas y comentario del servicio.</p>
+
+<h1 style='text-align:justify'><a name=h.cjlxu71l1nhf></a>Retroalimentación</h1>
+
+<p class=normal style='text-align:justify'>Una vez que el Proyecto haya sido
+completado, los Clientes y Talentos pueden calificar y dejar comentarios uno al
+otro.<span style='mso-spacerun:yes'>  </span>Este sistema de calificaciones
+pretende ser una guía para futuros usuarios y a <span class=SpellE>YoNecesito</span>
+como un punto de control en la calidad del servicio que ofrece.<span
+style='mso-spacerun:yes'>  </span>Múltiples calificaciones negativas serán
+motivo suficiente para la cancelación de la cuenta.<span
+style='mso-spacerun:yes'>  </span>Los Talentos no deben calificar de manera
+negativa con el fin de conseguir más dinero del Cliente, así como el Cliente no
+debe de calificar negativo con el fin de obtener mayores beneficios del
+Talento.<span style='mso-spacerun:yes'>  </span><span class=SpellE>YoNecesito</span>
+se reserva todo el derecho de remover cualquier calificación injustificada u
+ofensiva.</p>
+
+<h1 style='text-align:justify'><a name=h.iumm7tboutj4></a>Política de Pago y
+comisiones</h1>
+
+<p class=normal style='text-align:justify'><span class=SpellE>YoNecesito</span>
+únicamente cobra cuando el Talento quiere postularse a un Proyecto publicado
+por el cliente.<span style='mso-spacerun:yes'>  </span>El Talento tiene hasta 3
+postulaciones a Proyectos disponibles mes con mes y sin costo.<span
+style='mso-spacerun:yes'>  </span>Las postulaciones sin costo pueden ampliarse
+a través de promociones específicas publicadas por <span class=SpellE>YoNecesito</span>.<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p class=normal style='text-align:justify'><o:p>&nbsp;</o:p></p>
+
+<p class=normal style='text-align:justify'>Las postulaciones adicionales tienen
+un costo de $10.00 MXN cada una. El usuario puede comprar desde 1 postulación y
+sin límite alguno.<span style='mso-spacerun:yes'>  </span>Las postulaciones
+compradas no tienen fecha de expiración y pueden ser compradas con Tarjeta de
+Crédito/Débito, saldo telefónico o efectivo.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>El proveedor de
+pagos por Internet, efectivo y saldo telefónico, es un tercero por lo que <span
+class=SpellE>YoNecesito</span> en ningún momento tendrá acceso a tus datos
+bancarios confidenciales. En esta primera etapa el proveedor de pagos por
+Internet es la compañía <span class=SpellE>PayPal</span> y <span class=SpellE>ComproPago</span>.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Los usuarios son
+responsables del pago de sus impuestos, así como <span class=SpellE>YoNecesito</span>
+lo será en todo momento del pago de impuestos de cobros generados a <span
+class=SpellE>YoNecesito</span>.</p>
+
+<h1 style='text-align:justify'><a name=h.rstjfiboisgw></a>Uso de Servicios</h1>
+
+<p class=normal style='text-align:justify'>Al usar el Sitio de YoNecesito.mx te
+comprometes a hacerlo para <span class=SpellE>própositos</span> lícitos.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>(a)Te comprometes
+a no realizar ninguno de los siguientes: (1) Subir o transmitir cualquier tipo
+de material difamatorio, indecente, obsceno, hostigador, violeto, etc. a través
+del servicio; (2) Usar los servicios para violar derechos legales (incluyendo
+privacidad) u otro que pueda violar las leyes o cualquier jurisdicción; (3)
+Interceptar o intentar interceptar cualquier tipo de contenido o mensajes que
+no sea dirigido a tu persona; (4) Falsificar una afiliación, con una persona,
+institución u organización; (5) Publicar o transmitir servicios, publicidad o solicitudes
+de negocio no relacionados con los servicios ofrecidos en <span class=SpellE>YoNecesito</span>;<span
+style='mso-spacerun:yes'>  </span>(6) Subir o transmitir archivos corrompidos o
+que contengan virus;<span style='mso-spacerun:yes'>  </span>(7) Recolectar
+información de otros (incluyendo correos electrónicos) sin el consentimiento de
+los propietarios; (8) Bajar archivos o programas, o software en el mensaje, ya
+sean archivos o enlaces que se tenga el conocimiento o suficientes razones para
+creer que no pueden ser legalmente distribuidos a través del Sitio
+YoNecesito.mx o que se tenga una obligación contractual de mantener su
+confidencialidad; (10) Publicar “<span class=SpellE>spam</span>”, transmitir
+cartas cadena o encajar en actividades similares; (11)<span
+style='mso-spacerun:yes'>  </span>Llevar a cabo actividades ilegales o discutir
+el intento de cometer actos ilegales; (12) Reenviar encuestas, esquemas <span
+class=SpellE>piramide</span> o cartas cadena; (13)<span
+style='mso-spacerun:yes'>  </span>Encajar en cualquier conducta que inhiba o
+restrinja el uso del servicio o servicios o según lo determine <span
+class=SpellE>YoNecesito</span> que pueda dañar a <span class=SpellE>YoNecesito</span>
+o que exponga la legitimidad de los servicios del usuario.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>(b) El usuario
+entiende y reconoce que él mismo es el responsable de cualquier contenido que
+suba al Sitio, de tal forma que será el Usuario y NO <span class=SpellE>YoNecesito</span>
+quien tendrá completa responsabilidad por el tipo de contenido, incluyendo su
+legalidad, confiabilidad u oportunidad.<span style='mso-spacerun:yes'> 
+</span>Al subir o distribuir material a través del sitio, el Usuario garantiza
+que el material le pertenece y que es de dominio público o de libre
+distribución, así como el derecho de poder publicarlo.<span
+style='mso-spacerun:yes'>  </span>El usuario cede el derecho a <span
+class=SpellE>YoNecesito</span> de usar todo el contenido subido y publicado, de
+tal manera que <span class=SpellE>YoNecesito</span> pueda utilizarlo de la
+manera que decida, incluyendo pero no limitado a copiarlo, mostrarlo,
+publicarlo en cualquier formato de medios, así como modificarlo e incorporarlo
+en cualquier otro material que pueda incurrir en un trabajo derivado del mismo.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>(c)<span
+style='mso-spacerun:yes'>  </span>Cualquier contenido y/u opinión publicada,
+expresada o incluida en un mensaje, blog, cuarto de chat, foro o cualquier otra
+sección pública de los servicios (incluyendo los protegidos por contraseña), todos
+los artículos incluyendo preguntas y respuestas a las preguntas no provistas
+por <span class=SpellE>YoNecesito</span>, expresan las opinión de quien la <span
+class=SpellE>publica</span> y son responsabilidad del mismo y no necesariamente
+reflejan la opinión de <span class=SpellE>YoNecesito</span>. Toda la
+información pública o privada transmitida a través del servicio es completa
+responsabilidad de la persona que origina la información, así que <span
+class=SpellE>YoNecesito</span> no se hace responsable de la veracidad de la
+información, errores u omisiones de dicho contenido.<span
+style='mso-spacerun:yes'>  </span><span class=SpellE>YoNecesito</span> tampoco
+puede garantizar la identidad o autenticidad de ningún usuario con los que
+interactúas a través del sitio. </p>
+
+<p class=normal style='margin-top:10.0pt;margin-right:0cm;margin-bottom:10.0pt;
+margin-left:0cm;text-align:justify'>(d) Al <span class=SpellE>accesar</span> a
+los servicios ofrecidos por el portal es posible que tengas que proveer ciertos
+datos o detalles de registro. Es una condición para el uso del Sitio que
+proveas toda la información que se pide de manera correcta.<span
+style='mso-spacerun:yes'>  </span><span class=SpellE>YoNecesito</span> se
+reserva el derecho de terminar tu cuenta, si la información provista es falsa o
+incompleta. Todos los clientes deben de contar con una tarjeta de crédito o
+débito que será utilizada para pagar o bien para recibir pagos a través de un
+tercero.</p>
+
+<p class=normal style='text-align:justify'>(e) No cumplir con los términos y
+condiciones <span class=GramE>establecidos y mencionados</span> en este
+documento pueden resultar en el término definitivo de tu acceso a los servicios
+del Sitio y/o puede exponerte a obligaciones y/o crímenes.</p>
+
+<h1 style='text-align:justify'><a name=h.24t7ge5wvbnw></a>Terminación</h1>
+
+<p class=normal style='text-align:justify'><span class=SpellE>YoNecesito</span>
+se reserva el derecho de terminar cualquier o todo acceso a los servicios
+provistos, en cualquier momento y sin dar aviso. Así mismo el Usuario es libre
+de terminar el servicio con <span class=SpellE>YoNecesito</span> en cualquier
+momento. Una vez terminado el servicio se deberá dejar de hacer uso del
+Servicio por completo.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Los derechos de
+uso de esta licencia podrán ser terminados sin aviso por parte de <span
+class=SpellE>YoNecesito</span>, sin existir reembolsos o cualquier otro tipo de
+obligación, cuando se haya roto alguno de los términos aquí mencionados. <span
+class=SpellE>YoNecesito</span> también podrá terminar tu cuenta si el usuario
+recibe múltiples calificaciones bajas, no paga las recompensas o falla al
+completar los Proyectos para los que es solicitado.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'><span
+class=SpellE>YoNecesito</span> también podrá suspender la cuenta si publicas
+cualquier tipo de material que viole los Términos y Condiciones aquí
+mencionados. Sin embargo <span class=SpellE>YoNecesito</span> no tiene la
+obligación de verificar todo el material antes de su publicación en el Sitio,
+tampoco puede asegurar que el material objetable sea removido de manera
+automática una vez que ha sido publicado.<span style='mso-spacerun:yes'> 
+</span><span class=SpellE>YoNecesito</span> no se hace responsable de cualquier
+acción concerniente a la comunicación, transmisión o contenido provisto por
+terceros. <span class=SpellE>YoNecesito</span> se reserva todo el derecho de
+realizar cualquier medida que considere necesaria para proteger la seguridad
+personal de los usuarios de los Sin embargo <span class=SpellE>YoNecesito</span>
+no tiene ninguna responsabilidad u obligación de realizar las actividades
+descritas en este párrafo.</p>
+
+<h1 style='text-align:justify'><a name=h.xrgou311lna7></a>Registros de Marca</h1>
+
+<p class=normal style='text-align:justify'>El nombre de <span class=SpellE>YoNecesito</span>,
+su logo, nombres relacionados, productos, nombres de servicios, diseños y
+slogans son marcas registradas de <span class=SpellE>YoNecesito</span> y sus
+afiliados. Y <b style='mso-bidi-font-weight:normal'>no se deben de usar </b>dichos
+marcas sin el permiso previo escrito de <span class=SpellE>YoNecesito</span>.
+Cualquier otro nombre, marcas e identificadores son utilizados de manera
+informativa o ilustrativa y deberán ser registrados por sus respectivos dueños.
+</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>El material y
+contenido provistos por <span class=SpellE>YoNecesito</span> a través de sus
+servicios (“Contenido”), pertenece a <span class=SpellE>YoNecesito</span> o a
+un Tercero que provea o licencie el contenido a <span class=SpellE>YoNecesito</span>.
+Si un Tercero provee Contenido, entonces este retiene todos sus derechos, sobre
+el título e interés del Contenido. En consecuencia, el Contenido no debe ser
+copiado, distribuido, republicado, subido, transmitido o publicado en ningún
+otro medio sin previo consentimiento por escrito de <span class=SpellE>YoNecesito</span>.</p>
+
+<h1 style='text-align:justify'><a name=h.l2oy0l9rhqe></a>Restricciones de Uso y
+Licencia Limitada</h1>
+
+<p class=normal style='text-align:justify'>Por la presente, <span class=SpellE>YoNecesito</span>
+te concede una licencia de acceso limitado, no exclusivo, no transferible del
+uso de los servicios y el Contenido asociado con el Servicio provisto por <span
+class=SpellE>YoNecesito</span>.<span style='mso-spacerun:yes'>  </span>Al usar
+el servicio, estás de acuerdo que no podrás, ni permitirás que un tercero: (i)
+copie, venda, licencie, distribuya, transfiera, modifique, adapte, <span
+class=SpellE>decompile</span>, realice trabajos derivados, ingeniería Inversa,
+o intente encontrar el código fuente de los servicios, a menos que le sea
+permitido, (<span class=SpellE>ii</span>) tomar acciones que venzan la
+seguridad o reglas de uso del contenido provisto, implementado o que <span
+class=SpellE>force</span> la funcionalidad de los servicios contenidos, (<span
+class=SpellE>iii</span>) usar los servicios para acceder, copiar, transferir, <span
+class=SpellE>transcodificar</span> o retransmitir contenido en violación de cualquier
+ley o derechos de terceros, o (<span class=SpellE>iv</span>) remover o alterar
+marcas o derechos de autor de <span class=SpellE>YoNecesito</span> u otros
+propietarios que sean contenidos o <span class=SpellE>accesados</span> en
+conjunción o a través de los Servicios.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Tu aceptas que
+estás de acuerdo en el no uso de: (a) robots, malware u otro dispositivo
+automático que procese el acceso al Servicio, (b) usar cualquier proceso manual
+para monitorear o copiar cualquier material en este sitio o cualquier otro
+propósito no autorizado sin el consentimiento por escrito de <span
+class=SpellE>YoNecesito</span>, (c) usar cualquier dispositivo, programa o
+rutina que interfiera con el correcto funcionamiento del Servicio, (d) tratar
+de interferir con el correcto funcionamiento del Servicio, (e) tomar cualquier
+acción que imponga una carga irrazonable o desproporcionada a la
+infraestructura de <span class=SpellE>YoNecesito</span>, o (f) <span
+class=SpellE>accese</span>, recargue o refresque páginas transaccionales, o
+realice cualquier otro requisito transaccional a los servidores, más de una vez
+durante un periodo de 3 segundos.</p>
+
+<h1 style='text-align:justify'><a name=h.ni0dolrn1rpn></a>Descargo de
+responsabilidades</h1>
+
+<p class=normal style='text-align:justify'>EL USO DE LOS SERVICIOS PROVISTOS ES
+BAJO TU PROPIO RIESGO.<span style='mso-spacerun:yes'>  </span>EL CONTENIDO Y
+LOS SERVICIO PROVISTOS “COMO SON” Y SIN NINGUNA GARANTÍA DE NINGÚN TIPO, YA SEA
+EXPRESADA O IMPLÍCITA.<span style='mso-spacerun:yes'>  </span>YONECESITO SE
+DESLINDA DE TODA GARANTIA, INCLUIDA O IMPLICADA DE COMERCIABILIDAD, APTITUD
+PARA PROPÓSITOS PARTICULARES Y TÍTULOS. YONECESITO NO GARANTIZA QUE (I) EL USO
+DEL SERVICIO VAYA A COINCIDIR CON TUS REQUERIMIENTOS; (II) EL USO DE TUS
+SERVICIOS SEAN ININTERRUMPIDOS, PUNTUALES, SEGUROS O LIBRES DE CUALQUIER ERROR;
+(III) CUALQUIER INFORMACIÓN OBTENIDA POR TI COMO RESULTADO DEL USO DE LOS
+SERVICIOS SEA EXACTA O CONFIABLE; Y (IV) LOS DEFECTOS EN LA OPERACIÓN O
+FUNCIONALIDAD DEL SOFTWARE QUE SE TE PROVEE COMO PARTE DE LOS SERVICIOS SEAN
+CORRECTOS. CUALQUIER MATERIAL DESCARGADO U OBTENIDO A TRAVÉS ES DEL USO DEL USO
+DEL SERVICIO ES REALIZADO BAJO TU PROPIO RIESGO Y DISCRECIÓN Y QUE SERÁS
+RESPONSABLE DE CUALQUIER DAÑO QUE PUEDA PRESENTARSE EN TU COMPUTADORA, SISTEMA
+O CUALQUIER OTRO DISPOSITIVO O PÉRDIDA DE INFORMACIÓN O DATOS QUE RESULTE DE
+DESCARGAR DICHO MATERIAL.</p>
+
+<h1 style='text-align:justify'><a name=h.w3s9z9hkezpi></a>Indemnización</h1>
+
+<p class=normal style='text-align:justify'>El Usuario deberá defender,
+indemnizar, eximir de responsabilidad y no llevar a juicio a <span
+class=SpellE>YoNecesito</span>, sus oficiales, directores, trabajadores,
+agentes, afiliados, terceros, licenciatarios, contratistas y otros, que tengan
+que ver con el servicio o entrega del producto, servicio o información a través
+de los servicios. También estarás de acuerdo en que las partes indemnizadas no
+tendrán responsabilidad en conexión con cualquier violación o uso no autorizado
+y acuerdas en indemnizar cualquier resultante de pérdidas, daños, juicios,
+recompensas, costos, gastos, honorarios de abogados en conexión con ello.</p>
+
+<h1 style='text-align:justify'><a name=h.4x708jfyyhff></a>Envío de Comentarios
+y Sugerencias</h1>
+
+<p class=normal style='text-align:justify'>En <span class=SpellE>YoNecesito</span>
+se agradece y recibe todos los comentarios y sugerencias u otra información
+enviada con el propósito de mejorar el servicio o sus alianzas de negocio. Las
+solicitudes enviadas a través del servicio serán parte y propiedad de <span
+class=SpellE>YoNecesito</span> y <span class=GramE>tu</span> estarás de acuerdo
+en transferir todos los derechos de propiedad intelectual a <span class=SpellE>YoNecesito</span>
+Y que cualquier contenido publicado en área públicas serán no confidenciales y
+disponibles para cualquiera.<span style='mso-spacerun:yes'>  </span></p>
+
+<h1 style='text-align:justify'><a name=h.trfgixsos9v0></a>Propiedad Intelectual
+de un tercero</h1>
+
+<p class=normal style='text-align:justify'>Si el Usuario considera que su obra
+ha sido copiada de alguna forma que constituya una infracción a los derechos de
+autor, deberá hacer llegar a la Asociación una notificación escrita que
+contenga, al menos, la siguiente información</p>
+
+<p class=normalCxSpMiddle style='margin-left:36.0pt;mso-add-space:auto;
+text-align:justify;text-indent:-18.0pt;mso-list:l0 level1 lfo1'><![if !supportLists]><span
+style='mso-list:Ignore'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Una firma física o electrónica de la persona autorizada
+para actuar en nombre del propietario del interés del derecho de autor.</p>
+
+<p class=normalCxSpMiddle style='margin-left:36.0pt;mso-add-space:auto;
+text-align:justify;text-indent:-18.0pt;mso-list:l0 level1 lfo1'><![if !supportLists]><span
+style='mso-list:Ignore'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Una descripción de la obra con derechos <b
+style='mso-bidi-font-weight:normal'>de autor que el Usuario afirma fue
+infringida.</b></p>
+
+<p class=normalCxSpMiddle style='margin-left:36.0pt;mso-add-space:auto;
+text-align:justify;text-indent:-18.0pt;mso-list:l0 level1 lfo1'><![if !supportLists]><span
+style='mso-list:Ignore'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b style='mso-bidi-font-weight:normal'>Una descripción
+de la ubicación del mater</b>ial que el Usuario afirma que fue infringida en el
+sitio de <span class=SpellE>YoNecesito</span>, cualquier otro material
+adicional que facilite su ubicación en el sitio.</p>
+
+<p class=normalCxSpMiddle style='margin-left:36.0pt;mso-add-space:auto;
+text-align:justify;text-indent:-18.0pt;mso-list:l0 level1 lfo1'><![if !supportLists]><span
+style='mso-list:Ignore'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Dirección, número telefónico y correo electrónico.</p>
+
+<p class=normalCxSpMiddle style='margin-left:36.0pt;mso-add-space:auto;
+text-align:justify;text-indent:-18.0pt;mso-list:l0 level1 lfo1'><![if !supportLists]><span
+style='mso-list:Ignore'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Una declaración escrita en la que alegue de buena fe
+que el uso disputado no está autorizado por el dueño del derecho de autor, su
+agente o la ley.</p>
+
+<p class=normalCxSpMiddle style='margin-left:36.0pt;mso-add-space:auto;
+text-align:justify;text-indent:-18.0pt;mso-list:l0 level1 lfo1'><![if !supportLists]><span
+style='mso-list:Ignore'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Una declaración redactada en donde afirme que la
+información que presenta es precisa, y bajo penalización de perjurio, que es el
+dueño del derecho de autor o está autorizado para actuar en nombre del
+propietario.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>El Usuario acepta
+que si no cumple con todos los requisitos de notificación mencionados, su
+notificación o contra-notificación podrían no ser válidas y que <span
+class=SpellE>YoNecesito</span> podría ignorar tales notificaciones incompletas
+o imprecisas sin ninguna responsabilidad.</p>
+
+<p class=normal style='text-align:justify'><o:p>&nbsp;</o:p></p>

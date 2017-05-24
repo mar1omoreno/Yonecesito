@@ -1,0 +1,625 @@
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Georgia;
+	panose-1:2 4 5 2 5 4 5 2 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+p.MsoNormalCxSpFirst, li.MsoNormalCxSpFirst, div.MsoNormalCxSpFirst
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+p.MsoNormalCxSpMiddle, li.MsoNormalCxSpMiddle, div.MsoNormalCxSpMiddle
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+p.MsoNormalCxSpLast, li.MsoNormalCxSpLast, div.MsoNormalCxSpLast
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+h1
+	{margin-top:24.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:18.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+h1.CxSpFirst
+	{margin-top:24.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:18.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+h1.CxSpMiddle
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:18.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+h1.CxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:18.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+h2
+	{margin-top:18.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+h2.CxSpFirst
+	{margin-top:18.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+h2.CxSpMiddle
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+h2.CxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+h3
+	{margin-top:14.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;}
+h3.CxSpFirst
+	{margin-top:14.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;}
+h3.CxSpMiddle
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;}
+h3.CxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;}
+h4
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:2.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;}
+h4.CxSpFirst
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;}
+h4.CxSpMiddle
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;}
+h4.CxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:2.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;}
+h5
+	{margin-top:11.0pt;
+	margin-right:0cm;
+	margin-bottom:2.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;}
+h5.CxSpFirst
+	{margin-top:11.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;}
+h5.CxSpMiddle
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;}
+h5.CxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:2.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;}
+h6
+	{margin-top:10.0pt;
+	margin-right:0cm;
+	margin-bottom:2.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;}
+h6.CxSpFirst
+	{margin-top:10.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;}
+h6.CxSpMiddle
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;}
+h6.CxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:2.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:"Arial","sans-serif";
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{margin-top:24.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:36.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;
+	font-weight:bold;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+	{margin-top:24.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:36.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;
+	font-weight:bold;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:36.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;
+	font-weight:bold;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:36.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;
+	font-weight:bold;}
+p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle
+	{margin-top:18.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:24.0pt;
+	font-family:Georgia;
+	color:#666666;
+	font-style:italic;}
+p.MsoSubtitleCxSpFirst, li.MsoSubtitleCxSpFirst, div.MsoSubtitleCxSpFirst
+	{margin-top:18.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:24.0pt;
+	font-family:Georgia;
+	color:#666666;
+	font-style:italic;}
+p.MsoSubtitleCxSpMiddle, li.MsoSubtitleCxSpMiddle, div.MsoSubtitleCxSpMiddle
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:24.0pt;
+	font-family:Georgia;
+	color:#666666;
+	font-style:italic;}
+p.MsoSubtitleCxSpLast, li.MsoSubtitleCxSpLast, div.MsoSubtitleCxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:24.0pt;
+	font-family:Georgia;
+	color:#666666;
+	font-style:italic;}
+p.normal, li.normal, div.normal
+	{mso-style-name:normal;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+p.normalCxSpFirst, li.normalCxSpFirst, div.normalCxSpFirst
+	{mso-style-name:normalCxSpFirst;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+p.normalCxSpMiddle, li.normalCxSpMiddle, div.normalCxSpMiddle
+	{mso-style-name:normalCxSpMiddle;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+p.normalCxSpLast, li.normalCxSpLast, div.normalCxSpLast
+	{mso-style-name:normalCxSpLast;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial","sans-serif";
+	color:black;}
+.MsoChpDefault
+	{color:black;}
+.MsoPapDefault
+	{line-height:115%;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+
+<div class=WordSection1>
+
+<p class=MsoTitle style='text-align:justify;page-break-after:auto'><a
+name=h.1eiyky7hlcge></a>Políticas De Privacidad</p>
+
+<h1 style='text-align:justify;page-break-after:auto'><a name=h.7a2g2mwphhqy></a>Responsable
+de la protección de sus datos personales</h1>
+
+<p class=normal style='text-align:justify'>YoNecesito, con domicilio en piscina
+No. 804, Col. Loma Bonita, León, Guanajuato.  Es responsable de recabar sus
+datos personales, del uso que se le dé a los mismos y de su protección.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Cómo contactarnos</p>
+
+<p class=normal style='text-align:justify;text-indent:36.0pt'>Ramón Carmona
+Medina</p>
+
+<p class=normal style='text-align:justify;text-indent:36.0pt'><a
+href="mailto:carmonamr@gmail.com"><span style='color:#1155CC'>carmonamr@gmail.com</span></a></p>
+
+<p class=normal style='text-align:justify;text-indent:36.0pt'>477 200 1969</p>
+
+<h1 style='text-align:justify;page-break-after:auto'><a name=h.y166na5lghqq></a>Uso
+que da YoNecesito a la información Personal recolectada:</h1>
+
+<p class=normal style='text-align:justify'>YoNecesitousa la información
+personal para cualquiera de las siguientes finalidades:</p>
+
+<p class=normalCxSpMiddle style='margin-top:10.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:
+-18.0pt'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Proveer
+los servicios y productos requeridos por el usuario.</p>
+
+<p class=normalCxSpMiddle style='margin-top:10.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:
+-18.0pt'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Facturación,
+identificación, autentificación y prevención de fraudes. </p>
+
+<p class=normalCxSpMiddle style='margin-top:10.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:
+-18.0pt'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Para
+analizar el uso que se le da al Sitio y así mejorar los productos o servicios</p>
+
+<p class=normalCxSpMiddle style='margin-top:10.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:
+-18.0pt'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Para
+contactar e Informar sobre cambios o nuevos productos o servicios que estén
+relacionados con el contratado o adquirido por el cliente. </p>
+
+<p class=normalCxSpMiddle style='margin-top:10.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:
+-18.0pt'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Realizar
+estudios de mercado interno, solución de errores en el Sitio y protección
+contra fraudes y otras actividades delictivas. </p>
+
+<p class=normalCxSpMiddle style='margin-top:10.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:
+-18.0pt'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Su
+distribución con terceros o contratistas que proveen servicios a YoNecesito(y
+Socios) que también están sujetos por restricciones de privacidad que son tan
+restrictivas como las establecidas en este aviso de privacidad.</p>
+
+<p class=normalCxSpMiddle style='margin-top:10.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:
+-18.0pt'>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Para
+que el usuario (Talento - Cliente) reciba la información solicitada a través
+del servicio y ejecute la acción pertinente con su contraparte.</p>
+
+<p class=normalCxSpLast style='margin-top:10.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:
+-18.0pt'>8.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Para
+mejorar la experiencia de uso del Sitio de acuerdo a los intereses relevantes
+de nuestros usuarios vistos como un todo.</p>
+
+<h1 style='text-align:justify;page-break-after:auto'><a name=h.x4f17qx0reve></a>¿Qué
+datos personales obtenemos y de dónde?</h1>
+
+<p class=normal style='text-align:justify'>Para las finalidades señaladas en el
+presente aviso de privacidad, podemos recabar sus datos personales de distintas
+formas: cuando usted nos los proporciona directamente; cuando visita nuestro
+sitio de Internet o utiliza nuestros servicios en línea, y cuando obtenemos
+información a través de otras fuentes que están permitidas por la ley.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Datos personales
+que recabamos de forma “Directa”. Recabamos sus datos personales de forma
+directa cuando usted mismo nos los proporciona por diversos medios y de forma
+“Pasiva” como cuando participa en nuestras promociones o nos da información con
+objeto de que le prestemos un servicio. </p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Los Datos que
+obtenemos de manera Directa:</p>
+
+<p class=normalCxSpMiddle style='margin-top:10.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:
+-18.0pt'>●<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Para
+ingresar al sitio: Cuenta de Usuario, contraseña, nombre, apellido, correo
+electrónico.</p>
+
+<p class=normalCxSpMiddle style='margin-top:10.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:
+-18.0pt'>●<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Al
+validar usuarios: Identificación oficial (IFE, Licencia de manejo, cédula
+profesional, pasaporte), comprobante de domicilio, video de presentación.</p>
+
+<p class=normalCxSpMiddle style='margin-top:10.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:
+-18.0pt'>●<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Al
+publicar una Tarea (con el objeto de obtener ayuda) y al aplicar por una Tarea
+(con el objeto contactar la contraparte que solicita). Se pide información
+personal que puede ser pero no limitada a: Nombre, apellido, correo
+electrónico, número telefónico fijo y/o celular y demográfica (domicilio,
+ciudad, ubicación geográfica, entre otros).</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Datos que se pueden
+obtener de manera Pasiva:</p>
+
+<p class=normalCxSpMiddle style='margin-left:36.0pt;text-align:justify;
+text-indent:-18.0pt'>●<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Datos estadísticos, de navegación y rastreo.</p>
+
+<p class=normalCxSpMiddle style='margin-left:36.0pt;text-align:justify;
+text-indent:-18.0pt'>●<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>URL, Hit, Página, Archivo, dirección IP, dirección http, cookie, Visita,
+Host, Navegador, entre otros.</p>
+
+<p class=normalCxSpLast style='margin-left:36.0pt;text-align:justify;
+text-indent:-18.0pt'>●<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Otro tipo de datos que pudieran ser utilizados por aplicaciones como
+google analytics o mailchimp.</p>
+
+<h1 style='text-align:justify;page-break-after:auto'><a name=h.vdh3yle1ps55></a>¿Cómo
+puede limitar el uso o divulgación de sus datos personales?</h1>
+
+<p class=normal style='text-align:justify'>Usted puede dejar de recibir
+mensajes promocionales a través del vínculo <i>desuscribir (unsubscribe)</i>
+incluído en cada uno de los mensajes que recibe y así mismo ingresando a su
+cuenta de usuario en el portal web dentro de la sección “cuenta”.</p>
+
+<h1 style='text-align:justify;page-break-after:auto'><a name=h.v3l0jg5vf713></a>¿Cómo
+acceder o rectificar sus datos personales o cancelar u oponerse a su uso?</h1>
+
+<p class=normal style='text-align:justify'>Usted tiene derecho de acceder a sus
+datos personales que poseemos y a los detalles del tratamiento de los mismos,
+así como a rectificarlos en caso de ser inexactos o incompletos; cancelarlos
+cuando considere que no se requieren para alguna de las finalidades señaladas
+en el presente aviso de privacidad, estén siendo utilizados para finalidades no
+consentidas o haya finalizado la relación contractual o de servicio, o bien,
+oponerse al tratamiento de los mismos para fines específicos.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Los mecanismos que
+se han implementado para el ejercicio de dichos derechos son a través de su
+cuenta de usuario dentro del portal en la sección de “cuenta” o en caso de
+querer cancelar o revocar su consentimiento de uso de los mismos, a través de
+la siguiente dirección de correo electrónica “contacto<a
+href="mailto:carmonamr@gmail.com"><span style='color:#1155CC'>@yonecesito.</span></a>mx” 
+El correo debe contener el nombre de usuario o correo electrónico principal del
+usuario así como el motivo de cancelación/revocación. El plazo máximo para
+atender su solicitud será de 30 días hábiles.</p>
+
+<h1 style='text-align:justify;page-break-after:auto'><a name=h.y3f55jwk695></a>Sus
+datos pueden viajar a otro país o ser compartidos con otros</h1>
+
+<p class=normal style='text-align:justify'>Sus datos personales pueden ser
+transferidos y tratados dentro y fuera del país, por personas distintas a esta
+empresa. En ese sentido, su información puede ser compartida con Socios y
+empresas que presten algún servicio contractual a YoNecesito.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Nos comprometemos
+a no transferir su información personal a terceros sin su consentimiento, salvo
+las excepciones previstas en el artículo 37 de la Ley Federal de Protección de
+Datos Personales en Posesión de los Particulares, así como a realizar esta
+transferencia en los términos que fija esa ley.</p>
+
+<h1 style='text-align:justify;page-break-after:auto'><a name=h.ukey864dwaet></a>Modificaciones
+al aviso de privacidad</h1>
+
+<p class=normal style='text-align:justify'>Nos reservamos el derecho de
+efectuar en cualquier momento modificaciones  o actualizaciones al presente
+aviso de privacidad, para la atención de novedades legislativas, políticas
+internas o nuevos requerimientos para la prestación u ofrecimiento de nuestros
+servicios o productos.</p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>Estas
+modificaciones estarán disponibles al público a través de mensajes de correo
+electrónico que haremos llegar a nuestros usuarios, de manera visible en el
+portal y en la página <a href="<%= url_for inicio_politicas_path %>"><span
+style='color:#1155CC'>http://yonecesito.mx/politicas_de_privacidad</span></a></p>
+
+<p class=normal style='margin-top:10.0pt;text-align:justify'>YoNecesitose rige
+bajo Leyes Mexicanas.  Al hacer uso de este portal renuncias a cualquier otro
+fuero o legislación y cualquier controversia deberá ser resuelta frente a las
+autoridades mexicanas competentes. Así mismo, si usted considera que existe una
+violación a las disposiciones previstas en la Ley Federal de Protección de
+Datos Personales en Posesión de Particulares, podrá interponer cualquier
+denuncia o queja correspondiente ante el IFAI (<a href="http://ifai.gob.mx"><span
+style='color:#1155CC'>http://ifai.gob.mx</span></a>) </p>
+
+<p class=normal style='text-align:justify'>&nbsp;</p>
+
+
+</div>

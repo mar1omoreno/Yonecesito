@@ -1,0 +1,285 @@
+<div class="row grey text-left paddingTop">
+	<div class="col-md-4 col-md-offset-1 boldcrea"><h4 class="boldcrea">
+	    <span class="blue"><%= @nombre_trabajo %></span> en <%= @nombre_ciudad + ", " + @nombre_estado %></h4>
+	</div>
+
+	<div class="col-md-3 col-md-offset-4">
+		<a href="<%= url_for inicio_profesionista_index_path %>" >
+		    <span class="blue"><h4><i class="fa fa-arrow-left fa-lg"></i> Regresar</h4></span>
+		</a>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-1 col-md-push-1 lineaAzul"></div>
+	<div class="col-md-9 col-md-push-1 lineaGris"></div>
+</div>
+
+
+<div class="row paddingTop">
+
+	<div class="col-md-10 col-md-push-1 bckwhite">
+		
+		<% if !notice.nil? %><p class="notice"><%= notice %></p><% end %>
+		
+		<div class="row"><br>
+			<!-- Parte izquierda -->
+			<div class="col-md-7">
+				<h2><i class="fa fa-info-circle fa-lg blue"></i> Información del trabajo</h2>
+				<div class="row">
+					<div class="col-md-4">
+						<p>Trabajo a realizar: </p>
+					</div>
+
+					<div class="col-md-6">
+						<p><%= @nombre_trabajo %> </p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<p>Detalles del trabajo: </p>
+					</div>
+					<div class="col-md-6">
+						<p><%= @evento.descripcion %></p>
+					</div>
+				</div>
+				
+				<% @plantilla_respuestas.each do |respuesta| %>
+					<div class="row">
+						<div class="col-md-4">
+							<p><%= respuesta['titulo']%> : </p>
+						</div>
+						<div class="col-md-6">
+							<p><%=respuesta['respuestas'].join(", ")%></p>
+						</div>
+					</div>
+				<% end #ciclo respuestas %>
+				
+				
+				<div class="row">
+					<div class="col-md-4">
+						<p>Urgencia: </p>
+					</div>
+					<div class="col-md-6">
+						<p><%= get_valor_lista(Evento::URGENCIAS, @evento.urgencia_necesidad) %></p>
+					</div>
+				</div>
+				
+			</div>
+
+
+
+			<!-- Parte derecha -->
+			<div class="col-md-5 amarello">
+				<div class="row">
+					<div class="col-md-12">
+						<p><%= @cliente.nombre_completo.titleize %></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<p><i class="fa fa-home fa-lg blue"></i> <%= @nombre_ciudad + " " + @nombre_estado %></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<p><i class="fa fa-calendar fa-lg blue"></i> <%= l @evento.fecha, format: :short %></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<p><i class="fa fa-clock-o fa-lg blue"></i> Hora del día (Hrs): <%= @evento.hora || "No especificado" %></p>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-12">
+						<p><i class="fa fa-long-arrow-right fa-lg blue"></i> Duración (Hrs): <%= @evento.tiempo || "No especificado" %></p>
+					</div>
+				</div>
+				
+				<!--<div class="row">
+					<div class="col-md-12">
+						<p><i class="fa fa-at fa-lg blue"></i> correo</p>
+					</div>
+				</div>-->
+
+				<% if @evento.presupuesto_por_llamada == 1 %>
+				<div class="row">
+					<div class="col-md-12">
+						<p><i class="fa fa-phone fa-lg blue"></i> <%= @evento.telefono_movil %></p>
+					</div>
+				</div>
+				<% end %>
+
+
+				<% if @profesionista_evento.nil? #si aún no se ha aplicado a este evento %>
+					<% if @evento.estado != Evento::ESTATUS_PENDIENTE # Si el evento NO es aplicable  %>
+						Ya no es posible aplicar para este trabajo
+					<% else # Aún es posible aplicar %>
+						<% if current_profesionista.creditos < Evento::COSTO_CREDITOS_APLICAR %>
+							<div class="row">
+								<div class="col-md-12 text-center">
+									Créditos requeridos: <%= Evento::COSTO_CREDITOS_APLICAR %><br>
+									<%= link_to "Aplicar", creditos_index_path, {class: 'btn btn-primary botonMedio'} %>
+								</div>
+							</div>
+						<% else %>
+						<!-- Cotizaciones -->
+						<div class="row">
+							<div class="col-md-12 text-center">
+								Créditos requeridos: <%= Evento::COSTO_CREDITOS_APLICAR %><br>
+								<button id="aplicar" type="button" class="btn btn-primary botonMedio">Aplicar</button>
+								<div id="cotizar">
+									<%= form_tag trabajo_profesionista_cotizar_path(id_evento: @evento.id), class:'' do %>
+									<%= text_field_tag "cotizacion_monto", '', {class: 'form-control', placeholder:"Monto de cotización $$" } %>
+									<%= text_area_tag "cotizacion_detalles", '', {class: 'form-control', maxlength:300, rows:3, placeholder: "Agrega detalles relevantes de tu cotización para el cliente"} %>
+									<button id="btnCotizar" class="btn btn-primary">Cotizar</button>&nbsp;&nbsp;&nbsp;
+									<button id="btnCancelarCotizacion" class="btn btn-primary">Cancelar</button>
+									<% end #fin form_tag %>
+								</div>
+							</div>
+							<script>
+								$(document).ready(function(){
+									$("#aplicar").click(function(e){
+										$("#cotizar").show("slow");
+									});
+									$("#btnCancelarCotizacion").click(function(e){
+										e.preventDefault();
+										$("#cotizar").hide("slow");
+									});
+									$("#btnCotizar").click(function(e){
+										var monto = $("#cotizacion_monto").val();
+										var re = /^\d+(\.\d\d)?$/;
+           								if (!re.test(monto) ){
+           									e.preventDefault();
+           									alert("Favor de introducir un monto válido");
+           									return;
+           								}
+									});
+									
+									$("#cotizar").hide();
+								});
+							</script>
+						</div>
+						<% end # fin si hay créditos suficientes %>
+					<% end # fin si estatus permite aplicar %>
+					
+				<% else # SI hemos aplicado antes al evento, así que podemos visualizar mensajes %>
+				
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<p class="orange">Tus mensajes con el cliente</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 scroll" id="mensajes">
+							<!--mensajes enviados y recibidos para cliente profesionista-->	
+							<% @mensajes.each do |mensaje| 
+								if mensaje.fuente == Mensajes::FUENTE_PROFESIONISTA
+									status = "status"
+								else
+									status = "status-onn"
+								end	%>
+								
+								<div class="col-md-12">
+									<p>
+										<%= mensaje.fuente == Mensajes::FUENTE_CLIENTE ?
+								 		"De: " + current_profesionista.nombre_completo : 
+							   	 		"Para: "+ @cliente.nombre_completo
+										%> 
+										<br>
+							   			Fecha: <%= l mensaje.fecha_hora, format: :short %>
+									</p>
+									<div class="list-group-item list-group-item-success <%=status%>">
+									<% if mensaje.estado == Mensajes::MENSAJE_NO_LEIDO && mensaje.fuente == Mensajes::FUENTE_CLIENTE %>
+										<span><i class="fa fa-circle fa-1x"></i></span>
+									<% end %>
+								
+										<span><i class="fa fa-check-circle-o fa-1x"></i> </span>
+									
+										<%= mensaje.contenido%>
+									</div>
+								</div>
+							<br>
+							<%end # fin ciclo
+							#marcar mensajes
+							# marcar mensajes leídos Mensajes::marcar.....
+      				 		Mensajes::marcar_mensajes_para_profesionista_leidos(current_profesionista.id, @profesionista_evento.id)
+							%>
+						</div>
+					</div>
+					
+					<div class="enviarMensaje"><br><br>
+					<% if @profesionista_evento.estado==ProfesionistasXEventos::ESTADO_PENDIENTE or @profesionista_evento.estado==ProfesionistasXEventos::ESTADO_CONTRATADO_SIN_EVALUAR  #SI EL ESTDO DE PROFESIONISTA NO HA CAMBIADO DE PENDIENTE O COTRATADO SIN EVALUAR PODRA ENVIAR MENSAJES	%>
+						<%= form_tag(trabajo_profesionista_enviar_mensaje_path(id_evento: @evento.id, id_profesionista_evento: @profesionista_evento.id), :method => :post) do  %>		
+							<div class="row">
+								<div class="col-md-12 text-center">
+									<p class="orange">Escribir un mensaje</p>
+								</div>
+							</div>
+							<div class="row paddingTop">
+								<div class="col-md-12">
+									<%= text_area_tag(:contenido, '', :rows => 3, :id => "mensaje", :class => 'form-control textarea') %>
+								</div>
+							</div><br>
+							<div class="row">
+								<div class="col-md-4">
+									<%= submit_tag "Enviar", {class: 'btn btn-primary botonLargo', id: 'responder'} %>
+									<br><br>
+								</div>
+							</div>
+						<%end%>
+					<%end #fin de condicion de mostrat envio de mensajes%>
+					</div>		
+				<% end # fin si ha aplicado al evento %>
+				<br>
+			</div>
+			<!-- FIN parte derecha -->
+			
+			&nbsp;
+			
+		</div>
+	</div>
+</div>
+
+
+<div class="row top-buffer10em footerbck">
+	<div class="col-md-4 col-md-push-1">
+		<a href="#" class="whitelinks">Política de privacidad | </a><a href="#" class="whitelinks"> Terminos y condiciones | </a><a href="#" class="whitelinks"> Equipo | </a> <a href="#" class="whitelinks"> Blog</a>
+	</div>
+
+	<div class="col-md-4 col-md-push-6 padingo">
+		<a href="#"><i class="fa fa-envelope fa-2x whitelinks"></i></a>&nbsp;&nbsp;&nbsp; <a href="#"><i class="fa fa-facebook fa-2x whitelinks"></i></a>&nbsp;&nbsp;&nbsp; <a href="#"><i class="fa fa-twitter fa-2x whitelinks"></i></a>
+	</div>
+</div>
+
+
+<style>
+
+.scroll{
+  border: 1px solid #20576B;
+  background-color: #3276B1;
+  color: #fff;
+  height: 220px;
+  border-radius: 3px;
+  overflow-y: auto;
+}
+.status-onn{
+	background-color:#0099DF;
+	color: #fff;
+	border: 1px solid #0099DF;	
+}
+</style>
+<script>
+	$(document).ready(function(){
+		
+		var d = $('#mensajes');
+			d.scrollTop(d.prop("scrollHeight"));
+	
+	});
+</script>

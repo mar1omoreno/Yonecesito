@@ -1,0 +1,449 @@
+<div class="row top-buffer30 grey paddingTop">
+</div>
+<div class="row grey">
+	<div class="col-md-3 col-md-offset-1"><h4>Mensajes servicio de <%=@servicio%> </h4></div>
+	<div class="col-md-2 col-md-push-6">
+		<%= link_to "Regresar al panel", inicio_cliente_index_path %>
+		
+	</div>
+</div>
+
+
+<div class="row no-gutter">
+<% @profesionistas_contratables_contratados.each do |contrataciones| #tabs de profesionistas contratados y disponibles para contratar
+	nombre_contratable = Profesionista.find_by(id: contrataciones.id_profesionista).nombre_completo
+	if !@contratable_seleccionado.nil?
+		if contrataciones.id_profesionista == @profesionista_seleccionado.id
+			status = "status-on"
+		else
+			status = "status"
+		end
+	end %>
+	
+	<a href="<%= inicio_cliente_mensaje_servicio_path(id_profesionista_evento: contrataciones.id, id_evento: @evento.id)%>">
+		<div class="col-md-2 col-md-push-1 tab-profesionista text-center <%= status %> colorNoseleccionado" id="<%=contrataciones.id_profesionista%>" >
+			<br>
+			<p>
+				<% #link_to "#{nombre_contratable}", inicio_cliente_mensaje_servicio_path(id_profesionista_evento: contratable.id, id_evento: @evento.id)%>
+				<%= "#{nombre_contratable}" %>
+			</p>
+			<p>
+				<% calificacion_profesionista = Profesionista.find_by(id: contrataciones.id_profesionista) %>				
+				<%= calificacion_profesionista.get_html_calificacion(Profesionista::SIZE_ESTRELLAS_2).html_safe %>
+			</p>
+			<p>
+				<%= number_to_currency(Mensajes.find_by(id_profesionista_evento: contrataciones.id).cotizacion) %>
+			</p>
+			<p>
+				<% #condicion que permite mostrar el estado de una cotizacion de profesionista si esta disponible contratado evaluado o sin evaluar
+				if contrataciones.estado == ProfesionistasXEventos::ESTADO_CONTRATADO_SIN_EVALUAR%>				
+					<%= ProfesionistasXEventos::get_valor_estado(ProfesionistasXEventos::ESTADO_CONTRATADO_SIN_EVALUAR)%>
+				<%else%>
+					<%if contrataciones.estado == ProfesionistasXEventos::ESTADO_CONTRATADO_EVALUADO%>				
+						<%= ProfesionistasXEventos::get_valor_estado(ProfesionistasXEventos::ESTADO_CONTRATADO_EVALUADO)%>	
+					<%else%>
+					Disponible
+					<%end%>
+				<%end%>
+			</p>
+		</div>
+	</a>
+<%end#final de tabs %>
+</div>
+
+
+<% if !@contratable_seleccionado.nil? # Si hay un contratable seleccionado %>
+	
+	<div class="selec" id="<%= @profesionista_seleccionado.id%>">
+			
+			<div class="row">
+				<div class="col-md-10 bckwhite col-md-push-1 "><%= @profesionista_seleccionado.empresa%></div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-md-push-1 bckwhite info-profesionista">
+					<i class="fa fa-user fa-3x"></i> <%= @profesionista_seleccionado.nombre_completo%>
+					<br>
+					<span>&nbsp;</span>
+				</div>
+				<div class="col-md-3 bckwhite info-profesionista">
+					<i class="fa fa-phone fa-3x"></i> <%= @profesionista_seleccionado.tel_fijo%>
+					<br>
+					<span>&nbsp;</span>	
+				</div>
+				<div class="col-md-3 col-md-pull-1 bckwhite info-profesionista">
+					<i class="fa fa-home fa-3x"></i> 
+					<%= @ciudad %>
+					<br>
+					<span>&nbsp;</span>
+				</div>
+				<div class="col-md-3 col-md-pull-1 bckwhite info-profesionista">
+					<i class="fa fa-dot-circle-o fa-3x"></i> 
+					<%= @estado%>
+					<br>
+					<span>&nbsp;</span>
+				</div>
+			</div>
+			
+		<div>
+			<div class="row">
+				<div class="col-md-10 col-md-push-1 bckwhite"><br><br>
+					<p class="text-center">Mensajes recibidos</p>
+				</div>
+			</div>
+			
+			<!--Solicitud-->
+			<div class="row">
+				<div class="col-md-3 col-md-push-1 bckwhite precio-detalles">
+					 <h2>
+
+					 	<%= number_to_currency(Mensajes.find_by(id_profesionista_evento: @contratable_seleccionado.id).cotizacion) %>
+					 </h2>
+				 	<button>
+				 		<a href="<%= url_for(controller: 'inicio', action: 'ver_profesionista', id: @profesionista_seleccionado.id) %>" >
+				 			Ver perfil
+				 		</a>
+				 	</button> <br><br>
+				 	<button>
+				 		<a href="<%= url_for(controller: 'inicio_cliente', action: 'ver_servicio', id_evento: @evento.id) %>" >
+				 			Ver mi solicitud
+				 		</a>
+				 	</button>
+				 	<br><br><br>
+				</div>
+				<div  class="col-md-7 col-md-push-1 bckwhite ">
+					<div class="col-md-8 scroll" id="mensajes">
+					<% if !notice.nil? %><p class="notice"><%= notice %></p><% end %>
+					<!--mensajes enviados y recibidos para cliente profesionista-->	
+					<% @mensajes.each do |mensaje| 
+						if mensaje.fuente == Mensajes::FUENTE_PROFESIONISTA
+							status = "status-onn"
+						else
+							status = "status"
+						end	%>
+						
+						<div class="col-md-12">
+							<p>
+								<br>
+								<%= mensaje.fuente == Mensajes::FUENTE_PROFESIONISTA ?
+								 "De: " + @profesionista_seleccionado.nombre_completo : 
+							   	 "Para: "+ current_cliente.nombre_completo
+							   	%> 
+							   	<br>
+							   	Fecha: <%= l mensaje.fecha_hora, format: :short %>
+							</p>
+							<div class="list-group-item list-group-item-success <%=status%>">
+								<% if mensaje.estado == Mensajes::MENSAJE_NO_LEIDO && mensaje.fuente == Mensajes::FUENTE_PROFESIONISTA %>
+									<span><i class="fa fa-circle fa-1x"></i></span>
+								<% end %>
+								
+								<span><i class="fa fa-check-circle-o fa-1x"></i> </span>
+									
+									<%= mensaje.contenido%>
+							</div>
+						</div>
+						<br>
+					<%end # fin ciclo
+					#marcar mensajes
+					# marcar mensajes leídos Mensajes::marcar.....
+      				 Mensajes::marcar_mensajes_para_cliente_leidos(current_cliente.id, @contratable_seleccionado.id)
+					%>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<!--Botones de accion-->
+		<div class="row">
+			<div class="col-md-10 col-md-push-1 bckwhite">
+				<p class="text-center">
+					<div class="col-md-3">
+						<span>&nbsp;</span>
+					</div>
+					<%	#si el contratado es evaluado no podra enviar mensajes mientraas sea pendiente o sin evaluar si
+					if @contratable_seleccionado.estado == ProfesionistasXEventos::ESTADO_PENDIENTE%>
+					
+						<div class="col-md-3">
+							<button id="responder" class="btn btn-primary width50">Escribirle</button> 
+						</div>
+					<%end%>
+					<% 	# Si el prospecto aún está pendiente de decidirse si se contrata...
+						if @contratable_seleccionado.estado == ProfesionistasXEventos::ESTADO_PENDIENTE%>
+						<div class="col-md-3">
+						<%= form_tag(inicio_cliente_guardar_contrato_servicio_path(id_evento: @evento.id, id_profesionista_evento: @contratable_seleccionado.id), :method => :post) do  %>		
+							<%= submit_tag "Contratar", {class: 'btn btn-primary width50', id: 'contratar'} %>
+						<%end%>			
+						</div>
+						<div class="col-md-3">
+							<button id="rechazar"  class="btn btn-primary width50">Rechazar</button>
+						</div>
+					<%end%>
+				</p><br>
+			</div><br><br>
+		</div>
+		
+	</div>
+	<div class="line"></div>
+	<div class="responder servicio bckwhite">
+		<%= form_tag(inicio_cliente_enviar_mensaje_servicio_path(id_evento: @evento.id, id_profesionista_evento: @contratable_seleccionado.id), :method => :post) do  %>		
+		<div class="row">
+			<div class="col-md-10 col-md-push-1 bckwhite"><br><br>
+				<p class="text-center"><%= @profesionista_seleccionado.nombre_completo%></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-10 col-md-push-1 bckwhite"><br><br>
+				<p>
+					<%= text_area_tag(:contenido, '', :rows => 3, placeholder: "Escriba su mensaje", :id => "mensaje", :class => 'form-control textarea') %>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-10 col-md-push-1 bckwhite"><br><br>
+				<p class="text-center">
+					<%= submit_tag "Responder", {class: 'btn btn-primary', id: 'responder'} %>
+					<%= button_tag "Cancelar",:type => 'button',:class => "btn", :onclick => "location.href = '#{inicio_cliente_mensaje_servicio_path(:id_evento=>@evento.id)}'" %>
+				</p>
+			</div>
+		</div>
+		<% end %>
+	</div>
+
+	<div class="contratar servicio bckwhite">
+		<!--CONTENIDO para contratar invisible (¿En verdad desea contratar este profesionista?) 
+		y se hará visible con jquery al presionar botón contratar-->
+	
+		<div class="row">
+			<div class="col-md-10 col-md-push-1 bckwhite"><br><br>
+				<p class="text-center">
+					Que tal <%= current_cliente.nombre_completo %>, enviamos tus datos de contacto a <%= @profesionista_seleccionado.nombre_completo%>. No olvides calificar una vez que recibas el servicio.
+				</p>
+				<p class="text-center">
+					<i class="fa fa-check fa-3x"></i>
+				</p>
+				<p class="text-center">
+					Contratado
+				</p>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="rechazar servicio bckwhite">
+		<%= form_tag(inicio_cliente_guardar_rechazo_servicio_path(id_evento: @evento.id, id_profesionista_evento: @contratable_seleccionado.id), :method => :post) do  %>		
+		<!--CONTENIDO para rechazar invisible y se hará visible con jquery al presionar botón RECHAZAR-->
+		<div class="row">
+			<div class="col-md-10 col-md-push-1 bckwhite"><br><br>
+				<p class="text-center">
+					Ayúdanos a mejorar diciéndonos por qué motivo rechazas esta propuesta.  Esta información es privada, solo el equipo de Yo Necesito podrá verlo.
+				</p>
+				<p class="text-center">
+					<div class="checkbox">
+					    <label>
+					      <%= radio_button_tag :motivo_rechazo, ProfesionistasXEventos::get_rechazado_estado(ProfesionistasXEventos::EL_PRESUPUESTO_ES_DEMACIADO_CARO), false, {class: 'rechazado'} %> El presupuesto es demasiado caro.
+					    </label>
+					 </div>
+					 <div class="checkbox">
+					    <label>
+					      <%= radio_button_tag :motivo_rechazo, ProfesionistasXEventos::get_rechazado_estado(ProfesionistasXEventos::NO_ES_LO_QUE_NECESITABA), false, {class: 'rechazado'} %> No es lo que necesitaba.
+					    </label>
+					 </div>
+					 <div class="checkbox">
+					    <label>
+   					      <%= radio_button_tag :motivo_rechazo, ProfesionistasXEventos::get_rechazado_estado(ProfesionistasXEventos::EL_PROFECIONAL_SE_ENCUENTRA_MUY_LEJOS), false, {class: 'rechazado'} %> El profesional se encuentra muy lejos.	
+					    </label>
+					 </div>
+					 <div class="checkbox">
+					    <label>
+					       <%= radio_button_tag :motivo_rechazo, ProfesionistasXEventos::get_rechazado_estado(ProfesionistasXEventos::NO_RECIBI_UN_TRATO_CORDIAL), false, {class: 'rechazado'} %> No recibí un trato cordial.
+					    </label>
+					 </div>
+					 <div class="checkbox">
+					    <label>
+					      <%= radio_button_tag :motivo_rechazo, ProfesionistasXEventos::get_rechazado_estado(ProfesionistasXEventos::NO_ME_DA_CONFIANZA), false, {class: 'rechazado'} %> No me da confianza, quisiera que el equipo de Yo Necesito investigará a este profesional.
+					    </label>
+					 </div>
+					 <div class="checkbox">
+					    <label>
+					       <%= radio_button_tag :motivo_rechazo, ProfesionistasXEventos::get_rechazado_estado(ProfesionistasXEventos::OTRO_MOTIVO), false, {class: 'otro_motivo'} %> Otro motivo.
+					    </label>
+					 </div>
+					<p class="">
+						<%= text_area_tag(:otro_motivo, '', :rows => 5, :id => "otro_motivo", :class => 'form-control textarea') %>
+					</p>
+
+					<p>
+						<%= submit_tag "Enviar", {class: 'btn btn-primary', id: 'enviar'} %>
+						<%= button_tag "Cancelar",:type => 'button',:class => "btn", :onclick => "location.href = '#{inicio_cliente_mensaje_servicio_path(:id_evento=>@evento.id)}'" %>
+					</p>
+				</p>
+
+			</div>
+
+		</div>
+		<%end%>
+	</div>
+	
+
+<%else #si no hay contratable%>
+	<br><br><br><br><br><br>
+	<br><br>
+	<div class="col-md-10 col-md-push-1 text-center">
+		<p>No tienes profesionitas contratables seleccionados.</p>
+	</div>
+<% end # si hay contratable seleccionado%>
+
+
+<script>
+	$(document).ready(function(){
+	
+		var d = $('#mensajes');
+			d.scrollTop(d.prop("scrollHeight"));
+		
+		
+		
+		//validacion del campo otra razo para la seleccion del check
+		$("#otro_motivo").attr("disabled", true);
+		
+		if('input:radio[name="otro_motivo"]:checked'){
+    		$('.otro_motivo').on('change', function() {
+				$('textarea[name="otro_motivo"]').attr('disabled', false).focus();	
+    		});
+		}
+		
+		if('input[type=radio]:checked'){
+    		$('.rechazado').on('change', function() {
+				$('textarea[name="otro_motivo"]').attr('disabled', true).focus();	
+    		});
+		}
+		
+		$(".servicio").hide();
+		
+		var divActual = ".responder";
+		
+		function verPasos(div){
+			if(divActual != null){
+				$(divActual).fadeOut('slow', function(){
+					divActual = div;
+					$(divActual).fadeIn('slow');
+				} );
+			}else{
+				divActual = div;
+				$(divActual).fadeIn('slow');
+			}
+		}
+		
+		$("#responder").click(function(e){
+			verPasos(".responder");
+		});
+		
+		$("#contratar").click(function(e){
+			if(confirm("Desea realizar contrato")){
+        		verPasos(".contratar");
+    		}
+    		else{
+        		return false;
+    		}
+		});
+		
+		$("#rechazar").click(function(e){
+   			verPasos(".rechazar");
+		});
+		
+		$("#cancelar").click(function(e){
+			verPasos("");
+		});
+		
+		$(".responder #responder").click(function(e){
+			if($('textarea[name="contenido"]').val() == ""){
+				    e.preventDefault();
+				    alert("Favor de llena el mensaje");
+				    return;
+			}
+			
+		});
+		
+   		$('.rechazar #enviar').click(function(e){
+   			
+   			var escogidos = $("input[type=radio]:checked").length;
+			if(escogidos <=0){
+				e.preventDefault();
+				alert("Debe seleccionar al menos una opción");
+				return;
+			}
+			
+			if( $('input:radio[id="motivo_rechazo_Otro_motivo."]:checked').length > 0 ) {
+	    		if( $('textarea[name="otro_motivo"]').val() == "" ){
+					e.preventDefault();
+					alert("Favor de especificar la otra razón");
+					return;
+				}
+			}
+   			
+   		});
+   	
+   	
+	});
+</script>
+
+		
+		
+<style>
+
+div.line {
+    background-color:#ebebeb;
+    height: 5px;
+} 
+
+.colorNoseleccionado{
+	background-color: #ffffff;
+	border-right: 3px solid #EBEBEB;
+}
+.colorNoseleccionado:hover{
+	background-color:#0099DF;
+	color: #fff;
+}
+.colorNoseleccionado:hover a{
+	color: #fff;
+}
+
+.Seleccionado{
+	border-right: 3px solid #EBEBEB;
+	background-color:#0099DF;
+	color: #fff;
+}
+
+.status-on{
+	background-color:#0099DF;
+	color: #fff;
+}
+.status-onn{
+	background-color:#0099DF;
+	color: #fff;
+	border: 1px solid #0099DF;	
+}
+.status-on a{
+	color: #fff;
+}
+.scroll{
+  border: 1px solid #20576B;
+  background-color: #3276B1;
+  color: #fff;
+  height: 220px;
+  border-radius: 3px;
+  overflow-y: auto;
+}
+.precio-detalles{
+	height: 220px; /* igual que alto de clase .scroll*/
+}
+
+.info-profesionista{
+	height: 62px;
+	overflow: hidden;
+}
+.tab-profesionista{
+	width: 204px;
+  	height: 170px;
+}
+</style>

@@ -1,0 +1,55 @@
+<%= render "panel"%>
+
+		<div class="row bckwhite">
+			<br>
+
+			<div class="col-md-10 col-md-push-1 bckwhite paddingtop">
+				<%= form_for(current_cliente, :url => {:action => "cambiar_password"}, html: { method: :put }) do |f| %>
+  					
+  				<%= f.hidden_field :reset_password_token %>
+
+				<% if !notice.nil? %>
+				<p class="notice"><%= notice %></p>
+				<% end %>
+				
+				<% if current_cliente.errors.any? %>
+				    <ul><% current_cliente.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %></ul>
+				<% end %>
+
+				<p>Seguridad</p>
+				<p>Cambia tu contraseña de acceso a Yo Necesito</p>
+				<div class="form-group textareawidth">
+				    <label >Contraseña anterior</label>
+				    <%= f.password_field :current_password, :class => 'form-control' %>
+				</div>
+
+				<div class="form-group textareawidth">
+					<%= f.label :password, "Contraseña nueva" %><br />
+    				<%= f.password_field :password, :class => 'form-control', autocomplete: "off" %>
+				</div>
+
+				<div class="form-group textareawidth">
+					<%= f.label :password_confirmation, "Repetir contraseña nueva" %><br />
+    				<%= f.password_field :password_confirmation, :class => 'form-control', autocomplete: "off" %>
+				</div>
+
+
+				<div class="row paddingTop">
+					<div class="col-md-3 col-md-push-2">
+						<%= f.submit "Guardar", {class: 'btn btn-primary botonLargo', id: 'btnGuardar'} %>
+					</div>
+				</div>
+
+				<br><br><br><br>
+				
+				<% end %>				
+
+			</div>
+
+		</div>
+
+		<div class="row grey">
+			<div class="col-md-2 col-md-push-5">
+				
+			</div>
+		</div>

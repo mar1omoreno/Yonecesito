@@ -1,0 +1,24 @@
+<div class="row top-buffer80">	
+</div>
+<div class="row top-buffer80">
+	<div class="col-md-3 col-md-offset-4"><h4>Vamos a reiniciar tu contraseña</h4></div>
+</div>
+<div class="row top-buffer30">
+	<div class="col-md-4 col-md-push-4 grey paddingform">
+		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  		<%= devise_error_messages! %>
+			<div class="form-group">
+				<!--<label for="exampleMail">¿Cuál es tu correo electrónico?</label>
+				<input type="email" class="form-control" id="exampleMail" placeholder="">-->
+				<%= f.label :"¿Cuál es tu correo electrónico?" %><br />
+    			<%= f.email_field :email, autofocus: true, :class => 'form-control'  %>
+			</div>
+				<!--<button type="button" class="btn btn-primary creaCuenta">Reiniciar</button>-->
+				<%= f.submit "Reiniciar", :class => 'btn btn-primary creaCuenta'  %>
+		<% end %>
+	</div>
+</div>
+<div class="row top-buffer10em footerbck">
+</div>
+
+

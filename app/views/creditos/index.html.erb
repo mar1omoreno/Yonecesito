@@ -1,0 +1,56 @@
+<div class="row grey text-left paddingTop">
+	<div class="col-md-3 col-md-offset-1 boldcrea"><h4 class="boldcrea">Comprar creditos</h4></div>
+</div>
+
+<div class="row">
+	<div class="col-md-1 col-md-push-1 lineaAzul"></div>
+	<div class="col-md-9 col-md-push-1 lineaGris"></div>
+</div>
+
+<div class="row">
+	<div class="col-md-11 col-md-push-1">
+		<p>Compra paquetes de créditos, de acuerdo a tus necesidades.</p>
+	</div>
+</div>
+
+<div class="row paddingTop">
+	<div class="col-md-12 text-center">
+		<span class="blue"><h2>Actualmente tienes <%= current_profesionista.creditos %> créditos</h2></span>
+	</div>
+</div>
+
+
+<!-- Contenedor planes -->
+<div class="row no-gutter top-buffer30 row-centrada">
+
+    <% Credito::PLANES.each do |plan| %>
+	<div class="col-md-2 col-md-offset-1 paddingBottom col-centrada" >
+		<a href="<%= url_for creditos_iniciar_compra_path(id_plan: plan[:id]) %>" style="display:inline;">
+		    <div class="bckwhite text-center">
+	    		<div class="row" style="margin-right:0px; margin-left:0px;" >
+	    			<div class="col-md-12 text-center">
+		    			<span class="blue"><h2>$<%= plan[:costo]%></h2></span>
+		    			<span class="boldcrea"><p><%= plan[:creditos]%> créditos</p></span>
+		    			<p>0% de comisiones</p>
+		    			<p><!--Tarjeta de crédito--></p>
+		    			<p><!--Pago en efectivo--></p>
+	    			</div>
+	    		</div>
+	    		<div class="row paddingTop" style="margin-right:0px; margin-left:0px;" >
+	    			<div class="col-md-12 blueBox">
+	    				<div class="row">
+	    					<div class="col-md-8 col-md-push-2 text-center bckwhite top-buffer30">
+	    						<span class="blue"><h4>COMPRAR</h4></span>
+	    					</div>
+	    				</div>
+	    				<div class="row">
+	    					<span class="whitelinks"><h4><!--Tarjeta--></h4></span>
+	    				</div>
+	    			</div>
+	    		</div>
+			</div>
+		</a>
+	</div>
+	<% end %>
+
+</div>

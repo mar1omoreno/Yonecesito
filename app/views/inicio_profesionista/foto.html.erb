@@ -1,0 +1,35 @@
+<%= render "panel"%>
+
+		<div class="row bckwhite">
+			<br>
+			
+			<%= form_for(current_profesionista, :url => {:action => "foto"}, html: { multipart: true }) do |f| %>
+			
+			<div class="col-md-10 col-md-push-1 bckwhite paddingtop">
+				<p>Foto</p>
+				<p><%= @resultado %></p>
+				<p>
+					<label for="profesionista_archivo">
+						<%= image_tag "fotoup.png", {style: "cursor:pointer;"} %>&nbsp;&nbsp;&nbsp;
+						<%= image_tag "/fotos_profesionistas/#{current_profesionista.id}?t=#{Time.now.to_f}", {class: "avatar_foto", style: "cursor:pointer;"} %>&nbsp;&nbsp;&nbsp;
+					</label>
+					<%= f.file_field :archivo %>
+				</p>
+				<br><br><br><br>
+			</div>
+
+			<div class="row paddingTop">
+				<div class="col-md-3 col-md-push-2">
+					<%= f.submit "Guardar", {class: 'btn btn-primary botonLargo', id: 'btnGuardar'} %>
+				</div>
+			</div>
+			
+			<br><br><br><br>
+			
+			<% end %>
+			
+		</div>
+
+		<div class="row grey">
+			<div class="col-md-2 col-md-push-5"></div>
+		</div>

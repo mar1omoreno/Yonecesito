@@ -1,0 +1,94 @@
+		
+
+
+<div class="row top-buffer30 grey paddingTop greytxt">
+	<div class="col-md-2 col-md-offset-9">
+		<!--<button type="button" class="btn btn-primary participarBTN1 boldcrea">Explorar trabajos</button>-->
+		<%= link_to "Explorar trabajos", {:action=>"categorias"} ,:class=>"btn btn-primary participarBTN1 boldcrea"%>
+	</div>
+</div>
+<div class="row grey">
+	<div class="col-md-3 col-md-offset-1 boldcrea"><h4 class="boldcrea">Trabajos pendientes</h4></div>
+</div>
+<br><br>
+
+<% if @servicios_cliente.nil? %>
+<div >
+	<div class="row grey text-left">
+		<div class="col-md-3 col-md-offset-1 boldcrea"><h4 class="boldcrea">Trabajos pendientes</h4></div>
+	</div>
+	<div class="row">
+		<div class="col-md-1 col-md-push-1 lineaAzul"></div>
+		<div class="col-md-9 col-md-push-1 lineaGris"></div>
+	</div>
+	<div class="row grey">
+		<div class="col-md-6 col-md-push-3 paddingform boldcrea">
+			<h4 class="boldcrea">Aún no tienes trabajos, haz click en el botón azul para comenzar.</h4>
+		</div>
+	</div>
+	<div class="row grey">
+		<div class="col-md-2 col-md-push-5">
+				<%= link_to "Explorar trabajos", {:action=>"categorias"} ,:class=>"btn btn-primary participarBTN1 boldcrea"%>
+		</div>
+	</div>
+</div>
+<% end %>
+
+
+<div class="row no-gutter">
+    <% @servicios_cliente.each do |servicio|
+    	num_mensajes_nuevos = Mensajes::get_mensajes_nuevos_para_cliente_de_evento(current_cliente.id, servicio.id).length
+    	num_mensajes = Mensajes::get_mensajes_para_cliente_de_evento(current_cliente.id, servicio.id).length
+    	#@profesionistas_contratables = ProfesionistasXEventos.where(id_evento: servicio.id, 
+        #estado: ProfesionistasXEventos::ESTADO_PENDIENTE)
+        @profesionistas_contratables_contratados = ProfesionistasXEventos.where(id_evento: servicio.id, 
+        estado: [ProfesionistasXEventos::ESTADO_PENDIENTE, ProfesionistasXEventos::ESTADO_CONTRATADO_SIN_EVALUAR])
+            
+    %>
+	   <div class="col-md-3 col-md-offset-1 bckwhite text-center">
+			<!--mostrar el servicio en base a el id tipostrabajo-->
+	        <h4><%= TiposTrabajo.find( servicio.id_tipo_trabajo ).servicio %></h4>
+	        <p>Fecha inicial: <%= l servicio.fecha_alta, format: :short %></p>
+	        <p>Fecha final:   <%= l servicio.fecha, format: :short %></p>
+	        <p><i class="fa fa-envelope-o fa-lg"></i> <%= link_to "#{num_mensajes_nuevos} mensajes nuevos", inicio_cliente_mensaje_servicio_path(:id_evento=>servicio.id) %></p>
+	        <%= link_to "Ver", inicio_cliente_ver_servicio_path(:id_evento=>servicio.id), class:"btn btn-primary width50"%><br><br>
+   	        <%= link_to "Valorar servicio", inicio_cliente_terminar_servicio_path(:id_evento=>servicio.id), class:"btn btn-primary width50"%><br><br>						
+   	        
+	        <p class="expirada"><%= get_valor_lista(Evento::ESTATUS, servicio.estado)  %></p>
+	       	
+	       	<% if !@profesionistas_contratables_contratados.nil?%>
+	       		<div class="row">
+					<div class="col-md-12">
+						<%if @profesionistas_contratables_contratados.length < 6 %>
+							<% @profesionistas_contratables_contratados.limit(5).each do |contratable| %>
+	    		   				<%= image_tag "/fotos_profesionistas/#{contratable.id_profesionista}", {class: "avatar_lista"} %>	
+							<%end%>
+						<%end%>
+						<%if @profesionistas_contratables_contratados.length == 0 %>
+							<%= image_tag "/avatar.png", {class: "avatar_lista"} %>
+						<%end%>
+					</div>
+				</div>
+	       		<br>
+	       		
+				<%if @profesionistas_contratables_contratados.length == 1%>
+					<p><%= @profesionistas_contratables_contratados.length%> persona puede ayudarte.</p>
+				<%else%>
+					<p><%= @profesionistas_contratables_contratados.length%> personas pueden ayudarte.</p>
+				<%end%>
+			<%end%>
+
+	        <div class="borderMarco2"></div>    
+	    </div>
+    <%end%>
+</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		
+<style>
+	
+</style>

@@ -1,0 +1,63 @@
+
+
+	<div class="container-fluid">
+
+		<div class="row">
+
+			<div class="col-md-2 col-md-push-1">
+				<a href="#"><p><%= image_tag "logoblanco.png", :alt => "Logo", :title => "Logo", style:" width:167px; height:31px;" %></p></a>
+			</div>
+
+		</div>
+
+		<div class="row top-buffer80">
+
+			<div class="col-md-6 col-md-offset-1 whitelinks">
+				
+			</div>
+
+		</div>
+
+
+		<div class="row top-buffer30">
+			<%= form_for current_profesionista, url: {action: "final"}, html: {method: "post", class: "form-inline"} do |f| %>
+			<div class="col-md-10 col-md-push-1 paddingform grey greytxt">
+				<h2 class="biggertxt">¿A qué número de teléfono te llamarán los clientes?</h2>
+				
+				<% if current_profesionista.errors.any? %>
+				    <ul><% current_profesionista.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %></ul>
+				<% end %>
+				
+				  <div class="form-group">
+				    <label >Número celular 10 dígitos (necesario)</label> <br>
+				    <%= f.text_field :tel_celular, :class => 'form-control', maxlength: 10 %>
+				  </div> <br>
+				  
+				  <div class="form-group">
+				    <label >Número fijo 10 dígitos</label> <br>
+				    <%= f.text_field :tel_fijo, :class => 'form-control', maxlength: 10 %>
+				  </div> <br>
+				  
+				  <div class="form-group">
+				    <label >Nombre de tu negocio</label> <br>
+				    <%= f.text_field :empresa, :class => 'form-control' %>
+				  </div> <br>
+
+				<p>Al hacer click sobre  el botón <span class="boldCrea">Siguiente</span> indicas que has leído y estas de acuerdo con  las <%= link_to "Políticas de privacidad", inicio_politicas_path %>, así como los <%= link_to "Terminos y condiciones", inicio_terminos_path %> del sitio.</p>
+
+				<h2>
+					<a href="<%= url_for filtros_profesionistas_filtroB_path %>">
+			    		<i class="fa fa-arrow-left"></i> Regresar
+			    	</a>
+					<%= f.submit "Siguiente", {class: 'btn btn-primary', id: 'siguiente', style: 'margin-left:36em'} %>
+				</h2>
+			</div>
+			<% end %>
+			
+		</div>
+
+
+		<%= render 'footer' %>
+
+	</div>
+

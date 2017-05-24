@@ -1,0 +1,142 @@
+<div class="row imgBCK3">
+
+			<div class="col-md-12">
+
+				<div class="col-md-2 col-md-push-4 paddingTopCall">
+					<a href="https://www.youtube.com/watch?v=AKfkR2xJPJM" class="youtube">
+						<%= image_tag "PlayButton.png", :alt => "Play", :title => "Play", style:" width:150px; height:150px;" %>
+					</a>
+				</div>
+
+				<div class="col-md-4 col-md-push-4 paddingTopCall whitelinks">
+					<h2 class="italic">Te mandamos trabajos</h2>
+					<h3>Tú decides los que más te interesan.</h3>
+				</div>
+
+				<div class="row">
+					<div class="col-md-3 paddingTopCallmax">
+						<p>
+							<!--<button type="button" class="btn btn-primary participarBTN1 bigButton">Busco clientes</button>-->
+						<%= link_to "Busco clientes", inicio_profesionista_index_path, :class=>"btn btn-primary participarBTN1 bigButton"%></p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="blueBCK whiteFont">
+			<div class="row imgBCK4">
+				<div class="row paddingTopBottom">
+					<div class="col-md-3 col-md-offset-5 bigtxt">
+						<p class="text-left">¿Cómo funciona?</p>
+					</div>
+				</div>
+		
+				<div class="row paddingTopBottom">
+					<div class="col-md-5 col-md-offset-1">				
+						<p class="bigtxt">1 Te mandamos solicitudes de clientes</p>
+						<p>- Los clientes acuden a YoNecesito.mx buscando profesionales que los ayuden en sus proyectos.</p>
+						<p>- Ellos responden a preguntas especificas de acuerdo a sus necesidades.</p>
+						<p>- Cada solicitud se revisa para asegurarte que son verdaderas.</p>
+					</div>
+		
+					<div class="col-md-4 col-md-push-2">
+						<%= image_tag "test1.png", style:" width:224px; height:224px;" %>
+					</div>
+				</div>
+	
+			</div>
+		</div>
+
+		<div class="row paddingTopBottom">
+			<div class="col-md-5 col-md-offset-1 blue">				
+				<p class="bigtxt">2 Decide a quien responder</p>
+				<p>- Te mandamos solicitudes por correo electrónico de acuerdo a tus habilidades.</p>
+				<p>- Sí estas interesado y cumples con los requisitos puedes responder con una propuesta.</p>
+			</div>
+
+			<div class="col-md-4 col-md-push-2">
+				<%= image_tag "proStep2.png", style:" width:224px; height:224px;" %>
+			</div>
+		</div>
+
+		<div class="blueBCK whiteFont">
+			<div class="row paddingTopBottom imgBCK4">
+				<div class="col-md-5 col-md-offset-1">				
+					<p class="bigtxt">3 Envía una propuesta</p>
+					<p>- Tu propuesta incluye un mensaje personal, el precio estimado.</p>
+					<p>- Automáticamente envíamos junto con tu propuesta, tu perfil profesional que contiene los trabajos pasados, calificaciones, portafolio y datos de contacto (correo electrónico, teléfono, página).</p>
+					<p>- Únicamente pagas por propuesta enviada con creditos de YoNecesito (tienes 3 creditos gratis al mes).</p>
+				</div>
+	
+				<div class="col-md-4 col-md-push-2">
+					<%= image_tag "proStep3.png", style:" width:224px; height:224px;" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row paddingTopBottom">
+			<div class="col-md-5 col-md-offset-1 blue">				
+				<p class="bigtxt">4 ¿Listo para ser contratado?</p>
+				<p>- Usualmente de 1-2 profesionistas también responderán. El cliente comparará los presupuestos y decidirá a quien contactar.</p>
+				<p>- Arregla los detalles con el cliente mediante YoNecesito.mx, correo electrónico, teléfono o en persona.</p>
+				<p>- Una vez que seas contratado, cuéntanos y aumenta tus posibilidades de ser contratado con el siguiente cliente</p>
+			</div>
+
+			<div class="col-md-4 col-md-push-2">
+			    <%= image_tag "proStep4.png", style:" width:224px; height:224px;" %>
+			</div>
+		</div>
+
+
+		<!--<div class="row paddingTopBottom imgBCK5 ">
+			<!--<div class="col-md-3 paddingAllmax"></div>-->
+		<!--</div>-->
+		
+		<div id="miSlideshow" class="carousel slide" data-ride="carousel" style="width: 800px; margin: 0 auto" >
+			<!-- indicadores -->
+			<ol class="carousel-indicators" style="background-color:gray; opacity:.5;">
+				<li data-target="#miSlideshow" data-slide-to="0" class="active"></li>
+				<li data-target="#miSlideshow" data-slide-to="1" ></li>
+				<li data-target="#miSlideshow" data-slide-to="2" ></li>
+				<li data-target="#miSlideshow" data-slide-to="3" ></li>
+			</ol>
+			
+			<!-- contenedor de slides -->
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<%= image_tag "/imagenes/carrusel_que_es/step1.png" %>
+				</div>
+				<div class="item">
+					<%= image_tag "/imagenes/carrusel_que_es/step2.png" %>
+				</div>
+				<div class="item">
+					<%= image_tag "/imagenes/carrusel_que_es/step3.png" %>
+				</div>
+				<div class="item">
+					<%= image_tag "/imagenes/testimonios.png" %>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="row imgBCK4 paddingtut">
+			<div class="col-md-6 col-md-offset-3">				
+				<p class="bigtxt whitelinks">Únete y cuentanos cual es tu especialidad</p>
+			</div>
+
+			<div class="row paddingTopBottom">
+				<div class="col-md-4 col-md-offset-4">
+					<%= link_to "¡Quiero participar!", inicio_registrate_path, :class=>"btn btn-primary participarBTN"%>
+				</div>
+			</div>
+		</div>
+
+<%= javascript_include_tag 'bootstrap.youtubepopup.min' %>
+<script>
+	$(document).ready(function(){
+		$(".youtube").YouTubeModal({autoplay:1, width:854, height:510, useYouTubeTitle: false});
+	});
+</script>

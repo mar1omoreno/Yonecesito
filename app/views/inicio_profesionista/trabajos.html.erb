@@ -1,0 +1,72 @@
+<div class="row top-buffer30 grey paddingTop greytxt">
+	<div class="col-md-2 col-md-offset-9">
+		<%= link_to "Explorar servicios", inicio_profesionista_buscar_trabajo_path, class:"btn btn-primary participarBTN1 boldcrea"%>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-3 col-md-offset-1 boldcrea"><h4 class="boldcrea">Mis Trabajos</h4></div>
+</div>
+
+<div class="row">
+	<div class="col-md-1 col-md-push-1 lineaAzul"></div>
+	<div class="col-md-9 col-md-push-1 lineaGris"></div>
+</div>
+
+	
+<% if @profesionista_eventos.length <=0 # Si NO hay resultados %>
+    <div class="row">
+    	<div class="col-md-5 col-md-push-4 paddingform boldcrea">
+    		<h4 class="boldcrea">Los trabajos a los que apliques serán listados aquí</h4>
+    	</div>
+    </div>
+    <div class="row paddingTop">
+		<div class="col-md-2 col-md-push-5">
+		    <%= link_to "Explorar servicios", inicio_profesionista_buscar_trabajo_path, class:"btn btn-primary participarBTN1 boldcrea"%>
+		</div>
+	</div>
+<% else %>
+<!-- Resultaos -->
+<div class="row top-buffer30 no-gutter">
+
+    <% @profesionista_eventos.each do |trabajo| 
+        evento = Evento.find(trabajo.id_evento)
+        nombre_trabajo = TiposTrabajo.find(evento.id_tipo_trabajo).servicio
+        cliente = Cliente.find(evento.id_cliente)
+    %>
+	<div class="col-md-3 col-md-offset-1 paddingform">
+		<div class="bckwhite bordereadaGris text-center">
+			<h4><%= nombre_trabajo %></h4>
+			
+			<div class="row">
+				<div class="col-md-6 col-md-push-3 lineaGris"></div>
+			</div><br>
+	
+			<p>Sucede <%= l evento.fecha, format: :short %></p>
+			<p>Aplicado <%= l trabajo.fecha_aplicacion, format: :short %></p>
+	
+			<p>
+				<i class="fa fa-envelope-o fa-lg"></i> <%= Mensajes::get_mensajes_nuevos_para_profesionista(current_profesionista.id , trabajo.id).length %> Mensajes nuevos de <%= Mensajes::get_mensajes_para_profesionista(current_profesionista.id, trabajo.id).length %>
+			</p>
+			<br>
+	
+	        <%= link_to "VER", trabajo_profesionista_ver_path(:id_evento=>trabajo.id_evento), class:"btn btn-primary width50"%>
+	        <br><br>
+	
+	        <p class="expirada"><%= ProfesionistasXEventos::get_valor_estado(trabajo.estado)  %></p>
+			
+			<p><%= image_tag "/fotos_clientes/#{cliente.id}", {class: "avatar_lista"} %></p>
+	
+			<div class="row">
+				<div class="col-md-6 col-md-push-3 lineaGris"></div>
+			</div>
+	
+			<p><%= cliente.nombre_completo.titleize %></p>
+		</div>
+	</div>
+	<% end # fin ciclo resultados %>
+	
+</div>
+<% end # si hay resultados %>
+
+

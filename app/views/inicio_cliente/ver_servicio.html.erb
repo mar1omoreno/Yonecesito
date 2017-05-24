@@ -1,0 +1,133 @@
+
+
+
+
+<div class="row grey text-left paddingTop">
+	<div class="col-md-3 col-md-offset-1 boldcrea">
+		<h4 class="boldcrea">
+			<span class="blue"><%= @servicio %></span> en <br>
+				<%= CiudadesRepublica.find( id_estado = @servicio_cliente.id_ciudad_republica).descripcion %> <%= EstadosRepublica.find( id_estado = @servicio_cliente.id_estado_republica).descripcion %>
+		</h4>
+	</div>
+	<div class="col-md-3 col-md-offset-5">
+		<a href="<%= url_for :back %>" >
+		    <span class="blue"><h4><i class="fa fa-arrow-left fa-lg"></i> Regresar</h4></span>
+		</a>
+	</div>
+</div>
+
+
+
+<div class="row">
+	<div class="col-md-1 col-md-push-1 lineaAzul"></div>
+	<div class="col-md-9 col-md-push-1 lineaGris"></div>
+</div>
+<div class="row paddingTop">
+	<div class="col-md-10 col-md-push-1 bckwhite">
+		<div class="row"><br>
+		
+		<!-- parte izquierda -->
+			<div class="col-md-7">
+				<h2><i class="fa fa-info-circle fa-lg blue"></i> Información del trabajo</h2>
+				<br>
+					<div class="row">
+						<div class="col-md-4">
+							<p> <i class="fa fa-wrench fa-lg blue"></i> Trabajo a realizar: </p>
+						</div>
+						<div class="col-md-6">
+							<p><%= @servicio %></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<p> <i class="fa fa-info fa-lg blue"></i> Detalles del trabajo: </p>
+						</div>
+						<div class="col-md-6">
+							<p><%= @servicio_cliente.descripcion %></p>
+						</div>
+					</div>
+					<!-- respuestas dinamicas -->
+					<% @plantilla_respuesta.each do |respuestas|%>
+							<p><i class="fa fa-list-alt fa-lg blue"></i> <%=respuestas['titulo']%>: <%=respuestas['respuestas'].join(",")%></p>					
+					<%end%>
+					<!-- fin de respuestas dinamicas -->
+					<div class="row">
+						<div class="col-md-4">
+							<p><i class="fa fa-home fa-lg blue"></i> Dirección: </p>
+						</div>
+						<div class="col-md-6">
+							<p><%= @servicio_cliente.direccion_completa %></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<p><i class="fa fa-flag-o fa-lg blue"></i> cp: </p>
+						</div>
+						<div class="col-md-6">
+							<p><%= @servicio_cliente.cp %></p>
+						</div>
+					</div>
+					
+					<% if @servicio_cliente.presupuesto_por_llamada == 1 %>
+					<div class="row">
+						<div class="col-md-4">
+							<p><i class="fa fa-mobile fa-lg blue"></i> Telefono Celular: </p>
+						</div>
+						<div class="col-md-6">
+							<p><%= @servicio_cliente.telefono_movil%></p>
+						</div>
+					</div>
+					<% end %>
+					
+			</div>
+
+			<!-- fin de parte izquierda -->
+			<!-- parte derecha -->
+					<div class="col-md-5 amarello">
+						<br>
+						<div class="row">
+							<div class="col-md-4">
+								<p><i class="fa fa-ambulance fa-lg blue"></i> Urgencia: </p>
+							</div>
+							<div class="col-md-6">
+								<p><%= get_valor_urgencia(Evento::URGENCIAS, @servicio_cliente.urgencia_necesidad)%> </p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<p><i class="fa fa-clock-o fa-lg blue"></i> Hora: </p>
+							</div>
+							<div class="col-md-6">
+								<%= @servicio_cliente.hora || "No especificado" %>
+								
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<p><i class="fa fa-clock-o fa-lg blue"></i> Duración: </p>
+							</div>
+							<div class="col-md-6">
+								<%= @servicio_cliente.tiempo || "No especificado" %>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<p><i class="fa fa-home fa-lg blue"></i> Ciudad</p>
+							</div>
+							<div class="col-md-6">
+								<p> <%= CiudadesRepublica.find( id_estado = @servicio_cliente.id_ciudad_republica).descripcion %></p>	
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<p><i class="fa fa-calendar fa-lg blue"></i> Fecha:</p>
+							</div>
+							<div class="col-md-6">
+								<p><%= l @servicio_cliente.fecha, format: :short %></p>
+							</div>
+						</div>
+				<!--fin parte derecha-->	
+					</div>
+				</div>
+			</div>
+		</div>

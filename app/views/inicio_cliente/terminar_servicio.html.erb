@@ -1,0 +1,312 @@
+<div class="row top-buffer30 grey paddingTop"></div>
+
+<% if !flash[:notice].nil? %>
+	<div class="alert alert-warning"><%= flash[:notice] %></div>
+<% end %>
+
+
+<% #Si el evento es terminable ó terminó sin estar evaluado ...
+	if @evento.estado == Evento::ESTATUS_PENDIENTE  || (@evento.estado == Evento::ESTATUS_TERMINADO && @evento.evaluacion_estado == nil) %>
+
+<%= form_tag(inicio_cliente_guardar_terminar_servicio_path(id_evento: @evento.id), :method => :post) do  %>
+<div class="terminar servicio">
+	<div class="row grey">
+		<div class="col-md-4 col-md-push-1">
+			<p>Platícanos tu experiencia con la solicitud . Así nos ayudas a mejorar.</p>
+		</div>
+		
+		<div class="col-md-3 col-md-push-6"><%= link_to "Regresar", {:action=>"index"} ,:class=>"fa fa-arrow-left fa-lg blue"%></div>
+		
+
+	</div>
+	<div class="row">
+		<div class="col-md-10 col-md-push-1 bckwhite paso1">
+		
+		<% if @profesionistas_contratados.length > 0 %>
+			Estos son los profesionistas que ya contrataste
+			<ul>
+			<% @profesionistas_contratados.each do |contratado| %>
+				<li><span><i class="fa fa-check-circle-o fa-1x"></i> </span> <%= Profesionista.find(contratado.id_profesionista).nombre_completo %></li>
+			<% end %>
+			</ul>
+		<% end #si hubo contratados %>
+		
+		<% 	if @profesionistas_contratables.length > 0 # Si hay contratables? %>
+		
+			<%  if @profesionistas_contratados.length <= 0 	# Si no hubo contratados %>
+				<label style="cursor:pointer">
+					<%= radio_button_tag :evaluacion_estado, Evento::EVALUACION_CONTRATE_PROFESIONAL_EN_YN, false, {class: 'evaluacion', id: "radio_contrate_yn"} %>Contraté a un profesional gracias a Yo Necesito
+				</label>
+			<% else %>
+				<label>
+					¿Contrataste a más profesionistas? Por favor especifica quienes
+				</label>
+			<% end # fin si hay contratados %>
+		
+			<div id="contenido_contratables" style="margin-left:20px">
+				
+				<% @profesionistas_contratables.each do |profesionista| %>
+					<div class="checkbox">
+					<label>
+						<%= check_box_tag "calificable[]", profesionista.id_profesionista, false, {class: 'check_calificable'} %> <%= Profesionista.find(profesionista.id_profesionista).nombre_completo %>
+				    </label>
+					</div>
+				<% end # fin ciclo contratables %>
+			</div>
+			
+		<% end # fin si hay contratables %>
+		
+		<br>
+		
+		<% if @profesionistas_contratados.length == 0 # si NO hay contratados?  %>
+			<label style="cursor:pointer">
+				<%= radio_button_tag :evaluacion_estado, Evento::EVALUACION_CONTRATE_PROFESIONAL_FUERA, false, {class: 'evaluacion rechazo'} %> Contrate a un profesional fuera de Yo Necesito.
+			</label>
+			<br>
+			<label style="cursor:pointer">
+				<%= radio_button_tag :evaluacion_estado, Evento::EVALUACION_LO_HICE_YO, false, {class: 'evaluacion rechazo'} %> Decidí hacerlo yo mismo.
+			</label>
+			<br>
+			<label style="cursor:pointer">
+				<%= radio_button_tag :evaluacion_estado, Evento::EVALUACION_CAMBIO_PLANES, false, {class: 'evaluacion rechazo'} %> Hubo un cambio de planes.
+			</label>
+			<br>
+			<label style="cursor:pointer">
+				<%= radio_button_tag :evaluacion_estado, Evento::EVALUACION_OTRO, false, {class: 'otra_razon rechazo'} %> Otra razón.
+			</label>
+		
+			<%= text_area_tag(:otra_razon, '', :rows => 3, :class => 'form-control textarea') %>
+			
+			<br><br>
+			
+		<% end # si NO hay contratados %>
+			<!--<p>Notificaremos a los profesionales de tu decisión.</p> -->
+			<%= submit_tag "Siguiente", {class: 'btn btn-primary', id: 'siguiente'} %>		
+		</div>
+	</div>
+</div>
+<% end #fin formulario %>
+
+
+
+<% # PASO 2 - CALIFICACIÓN DE PROFESIONISTAS POR SEPARADO
+	elsif @evento.estado == Evento::ESTATUS_TERMINADO and @evento.evaluacion_estado == Evento::EVALUACION_CONTRATE_PROFESIONAL_EN_YN %>
+
+
+<%= form_tag inicio_cliente_guardar_evaluar_servicio_path(id_evento: @evento.id) do %>
+
+<div class="calificar servicio">
+
+	<div class="row top-buffer30 grey paddingTop">
+	</div>
+	<div class="row grey">
+		<div class="col-md-3 col-md-offset-1"><h4>Califica el servicio que recibiste</h4></div>
+		<div class="col-md-3 col-md-push-6"><%= link_to "Regresar", {:action=>"index"} ,:class=>"fa fa-arrow-left fa-lg blue"%></div>
+	</div>
+	<div class="row">
+		<div class="col-md-9 col-md-push-1">
+			<p>Cada calificación que reciben los profesionales, les ayuda a tener credibilidad y a los clientes a decidir mejor por el profesional correcto.</p>
+		</div>
+	</div>
+	
+	<% @profesionistas_contratados.each do |profesionista| #ciclo de contratados a evaluar %>
+	<div class="row">
+		<div class="col-md-10 col-md-push-1 bckwhite paddingform">
+			<br>
+			<p><%=image_tag("/fotos_profesionistas/#{profesionista.id_profesionista}", {class:'avatar_lista'}) %>
+			<%=Profesionista.find(profesionista.id_profesionista).nombre_completo.titleize %></p>
+			
+			<div class="row">
+				<div class="col-md-3">
+					<fieldset class="rating">
+    				<input type="radio" id="<%="star5_#{profesionista.id_profesionista}"%>" value="5" class="estrella" /><label for="<%="star5_#{profesionista.id_profesionista}"%>">5 stars</label>
+    				<input type="radio" id="<%="star4_#{profesionista.id_profesionista}"%>" value="4" class="estrella" /><label for="<%="star4_#{profesionista.id_profesionista}"%>">4 stars</label>
+    				<input type="radio" id="<%="star3_#{profesionista.id_profesionista}"%>" value="3" class="estrella" /><label for="<%="star3_#{profesionista.id_profesionista}"%>">3 stars</label>
+    				<input type="radio" id="<%="star2_#{profesionista.id_profesionista}"%>" value="2" class="estrella" /><label for="<%="star2_#{profesionista.id_profesionista}"%>">2 stars</label>
+    				<input type="radio" id="<%="star1_#{profesionista.id_profesionista}"%>" value="1" class="estrella" /><label for="<%="star1_#{profesionista.id_profesionista}"%>">1 star</label>
+    				<%= hidden_field_tag "evaluacion[#{profesionista.id_profesionista}][calificacion]", "", {class: 'calificacion'} %>
+					</fieldset>	
+				</div>
+			</div>
+			
+			<p>¿Tienes comentarios sobre el servicio recibido?</p>
+			<%= text_area_tag("evaluacion[#{profesionista.id_profesionista}][comentarios]", '', :rows => 3, :class => 'form-control textarea') %>
+		</div>
+	</div>
+	<% end #fin ciclo calificables %>
+	
+</div>
+	
+	<div class="row">
+		<div class="col-md-10 col-md-push-1 bckwhite paddingform">
+				<%= submit_tag "Finalizar", {class: 'btn btn-primary finalizar', id: 'finalizar'} %>			
+		</div>
+	</div>	
+	
+<% end # fin formulario %>
+
+<% else # no se visualiza paso 1 ni 2 %>
+	<div class="row grey">
+		<div class="col-md-3 col-md-offset-1"><h4>	Este servicio ya fue evaluado. ¡Gracias!</h4></div>
+		<div class="col-md-3 col-md-push-6"><%= link_to "Regresar", {:action=>"index"} ,:class=>"fa fa-arrow-left fa-lg blue"%></div>
+	</div>
+
+<% end # fin SI se visualiza paso 1 ó 2 %>
+
+
+
+<div class="row grey">
+	<div class="col-md-2 col-md-push-5"></div>
+</div>
+<script>
+	$(document).ready(function(){
+
+		//Al seleccionar/deseleccionar profesionistas, igualmente se selecciona/deselecciona radio "Contraté en yo necesito"
+		$(".check_calificable").on("change", function(){
+			$("#radio_contrate_yn").prop("checked", $(".paso1 input[type=checkbox]:checked").length >0 );
+		});
+		
+		//Si alguna opción de rechazo es seleccionada, deseleccionamos los checkbox de profesionistas (check_calificable)
+		$(".rechazo").on("change", function(){
+			if( $(".rechazo:checked").length > 0 )
+				$(".check_calificable").prop("checked", false)
+		});
+		
+		
+		//validacion del campo otra razo para la seleccion del check
+		$("#otra_razon").attr("disabled", true);
+		
+		$('.otra_razon').on('change', function() {
+			$('textarea[name="otra_razon"]').attr('disabled', false).focus();	
+		});
+		
+		$('.evaluacion').on('change', function() {
+			$('textarea[name="otra_razon"]').attr('disabled', true).focus();	
+		});
+		
+		
+		
+		
+		$("#siguiente").click(function(e){
+			//Si está visible y seleccionado radio "Contraté en yo necesito" y NO hay profesionistas checados ...
+			if( $("#radio_contrate_yn:checked").length > 0 && $(".check_calificable:checked").length <= 0 ){
+				e.preventDefault();
+				alert("Debe seleccionar un profesionista al especificar que contrató alguien en Yo Necesito");
+				return;
+			}
+			
+			var escogidos = $(".paso1 input[type=radio]:checked").length;
+			var hayOpciones = $(".paso1 input[type=radio]").length > 0;
+			if(hayOpciones && escogidos <=0){
+				e.preventDefault();
+				alert("Debe seleccionar al menos una opción");
+				return;
+			}
+			// Si hay "otra razón" seleccionada, valida textarea
+			if( $('input:radio[name="otra_razon"]:checked').length > 0 ) {
+	    		if( $('textarea[name="otra_razon"]').val() == "" ){
+					e.preventDefault();
+					alert("Favor de especificar la otra razón");
+					return;
+				}
+			}
+			
+		});
+		
+		$("#finalizar").click(function(e){
+		
+			$(".textarea").each(function(){
+				if($(this).val()==""){
+					 e.preventDefault();
+		     		 alert("Favor de agregar comentarios en todos los profesionistas");
+			    	 return;
+				}
+			});
+			
+			$(".calificacion").each(function(){
+				if($(this).val()==""){
+					e.preventDefault();
+			    	alert("Favor de calificar el servicio de todos los profesionistas");
+			   		return;
+				}
+			});
+		
+		});
+   		
+		//estrellas para calificar
+	
+   		//Capturamos el click de un radio y asignamos su valor de calificación al input escondido que le corresponde
+   		$(".estrella").click(function(){
+   			$(this).parent().find(".calificacion").val( $(this).val() );
+   		});
+   			
+   	
+	});
+</script>
+
+<style>
+ul li {
+    list-style-type: none;
+
+}
+
+
+/*estrella csss*/
+
+.rating {
+  border: 1px solid #ffffff; 
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+.rating:not(:checked) > input {
+	/*
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);*/
+    display: none; /* con CSS anterior un click en radio cambiaba scroll de página. Así ya no sucede pues radio no cambia de posición con respectoa su label */
+}
+
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: gold;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > label:active {
+    position:relative;
+    top:2px;
+    left:2px;
+}
+
+</style>

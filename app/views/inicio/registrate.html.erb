@@ -1,0 +1,31 @@
+<div class="row top-buffer80">
+	<div class="col-md-5 col-md-offset-4 bigtxt">Regístrate en Yo Necesito</div>
+</div>
+<div class="row top-buffer30 grey paddingrow">
+	<div class="col-md-4 col-md-offset-1 imgbck whitelinks1 paddingall">
+		<p class="paddinglft">
+			Quiero crecer mi negocio
+		</p>
+		<p class="paddinglft">
+			<span class="whitelinksub">Responde a clientes interesados con presupuestos y se contratado.</span>
+		</p>
+		<p class="text-center">			
+			<%= link_to "Registrar", new_profesionista_registration_path, :class=>"btn btn-primary btn-lg" %>
+			
+		</p>
+	</div>
+	<div class="col-md-4 col-md-push-2 bckwhite blacklinks1 paddingall">
+		<p class="paddinglft">Quiero contratar profesionales</p>
+		<p class="paddinglft">
+			<span class="blacklinksub">Conoce al profesional correcto para realizar tu trabajo.</span>			
+		</p>
+		<p class="text-center">			
+			<%= link_to "Registrar", new_cliente_registration_path, :class=>"btn btn-primary btn-lg" %>
+		</p>
+	</div>
+</div>
+<div class="row top-buffer80">
+	<div class="col-md-5 col-md-offset-5">Sí ya tienes una cuenta,		
+		<%= link_to "Entra",{:action=>"entra"}%>
+	</div>
+</div>

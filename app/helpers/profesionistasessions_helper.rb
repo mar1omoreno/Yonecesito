@@ -1,0 +1,2 @@
+module ProfesionistasessionsHelper
+end

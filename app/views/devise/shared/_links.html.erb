@@ -1,0 +1,7 @@
+
+
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+      <a href="<%=url_for omniauth_authorize_path(resource_name, provider) %>" class="btn btn-primary creaCuentaFB text-center" ><i class="fa fa-facebook fa-2x whitelinks"></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%="Entrar con #{provider.to_s.titleize}"%> </a>
+  <% end -%>
+<% end -%>

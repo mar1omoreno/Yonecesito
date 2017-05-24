@@ -1,0 +1,96 @@
+<%= render "panel"%>
+
+		<div class="row bckwhite">
+			<br>
+
+			<div class="col-md-10 col-md-push-1  paddingtop">
+				
+				<%= form_for current_profesionista, url: {action: "guardar_datos_basicos"}, html: {method: "post", class: "form-inline"} do |f| %>
+				
+				<% if !notice.nil? %>
+				<p class="notice"><%= notice %></p>
+				<% end %>
+				
+				<div class="col-md-12">
+					<div class="form-group">
+					  <label >Nombre</label><br>
+					  <%= f.text_field :nombre, :class => 'form-control', maxlength: 20 %>
+					</div>
+					<div class="form-group">
+					  <label >Apellido</label><br>
+					  <%= f.text_field :apellido, :class => 'form-control', maxlength: 30 %>
+					</div>				
+				</div>
+
+				<div class="form-group textareawidth">
+				    <label >Nombre de la empresa</label> <br>
+				    <%= f.text_field :empresa, class: 'form-control', maxlength: 45 %>
+				</div>
+				
+				<p>Cuéntanos de tu empresa</p>
+					<%= f.text_area :sobre_empresa, :class => 'form-control textareawidth', maxlength: 300, rows: 3, style:'width:50%' %>
+				<br>
+				
+				<div class="form-group">
+				  <label >Sexo</label><br>
+				  <%= f.select :sexo, options_for_select( {'Masculino'=>'M', 'Femenino'=>'F'}, current_profesionista.sexo) , {}, 
+                      { class: 'form-control' } %>
+				  
+				</div>
+				
+				<div class="form-group">
+				  <label >Fecha de nacimiento</label><br>
+				  <%= select_tag( :dia, options_for_select(1..31, @dia),  {class: 'form-control'}  ) %>
+				  <% meses = {'Enero'=>'01', 'Febrero'=>'02', 'Marzo'=>'03', 'Abril'=>'04', 'Mayo'=>'05', 'Junio'=>'06', 'Julio'=>'07', 'Agosto'=>'08', 'Septiembre'=>'09', 'Octubre'=>10, 'Noviembre'=>11, 'Diciembre'=>12 } %>
+				  <%= select_tag( :mes, options_for_select(meses, @mes),  {class: 'form-control'}  ) %>
+				  <%= select_tag( :ano, options_for_select( (Date.today.year-18).downto(1900), @ano), {class: 'form-control'} ) %>
+				</div>
+				
+				<div class="row paddingTop">
+					<div class="col-md-3 col-md-push-2">
+						<%= f.submit "Guardar", {class: 'btn btn-primary botonLargo', id: 'btnGuardar'} %>
+						<br><br>
+					</div>
+				</div>
+				
+				<% end %>
+
+			</div>
+
+		</div>
+
+		<div class="row grey">
+			<div class="col-md-2 col-md-push-5">
+				
+			</div>
+		</div>
+		
+<%= "" #stylesheet_link_tag    'datetimepicker' 
+%>
+<%= "" #javascript_include_tag 'datetimepicker' 
+%><!-- http://xdsoft.net/jqplugins/datetimepicker/ -->
+
+<script>
+	
+	$(document).ready(function(){
+		moment.locale("es"); //Fechas en español
+		
+		$("#btnGuardar").click(function(e){
+			var fechaTexto = $("#ano").val() + "-" + $("#mes").val() + "-" + ($("#dia").val()<10?"0":"")+$("#dia").val() ;
+			var fecha = moment(fechaTexto);
+			if( !fecha.isValid() ){
+				alert("La fecha de nacimiento no es válida "+fechaTexto);
+				e.preventDefault();
+				return;
+			}else{
+				/*if(moment().diff(fecha, 'years')<18 ){
+					alert("Debe ser mayor de edad");
+					e.preventDefault();
+					return;
+				}*/
+			}
+		});
+		
+	});
+	
+</script>

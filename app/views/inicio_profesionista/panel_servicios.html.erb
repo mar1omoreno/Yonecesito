@@ -1,0 +1,126 @@
+<%= render "panel"%>
+
+
+		<div class="row bckwhite">
+			<br>
+			<div class="col-md-10 col-md-push-1">
+				<p>Mis servicios</p>
+				<p>Agrega los servicios que puedes proveer. Te avisaremos cada que se soliciten más trabajos.</p>
+			</div>
+		</div>
+		
+		<div class="row bckwhite">
+			<div class="col-md-10 col-md-push-1 bckwhite paddingtop">
+
+				<%= form_for :servicios, url: {action: "guardar_servicios"}, html: {method: "post", class:''} do |f| %>
+
+				<% if !notice.nil? %>
+				<p class="notice"><%= notice %></p>
+				<% end %>
+
+				<% (0..4).each do |i| %>
+				  <div class="form-group form-inline">
+				  	<% 
+				  	seleccionCategoria = "" #Categorías son texto
+				  	seleccionTrabajo = 0
+				  	if @tiposTrabajoSeleccionados.length-1 >= i # Si en ciclo actual existe un trabajo seleccionado
+				  		seleccionTrabajo = @tiposTrabajoSeleccionados[i].id_tipo_trabajo
+				  		seleccionCategoria = TiposTrabajo.find(seleccionTrabajo).categoria
+				  	end
+				  	opciones_trabajo = TiposTrabajo.where(categoria: seleccionCategoria).order(:servicio).select('id, servicio')
+				  	%>
+				  	<%= select_tag "categoria#{i}", 
+				  		options_for_select(@categorias.collect {|categoria| [categoria.titleize, categoria] }, seleccionCategoria),
+				  		prompt:"Selecciona categoría", id:"categoria#{i}_select", class:'form-control opcion_categoria' %>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<%= select_tag "servicio[]", 
+						options_for_select(opciones_trabajo.collect {|trabajo| [trabajo.servicio.titleize, trabajo.id] }, seleccionTrabajo),
+						prompt:"Selecciona servicio", class: "form-control opcion_trabajo" %>
+				  </div>
+				<% end #fin ciclo trabajos %>
+				
+				<br>
+
+				<p></p>
+
+				<div class="row paddingTop">
+					<div class="col-md-3 col-md-push-2">
+						<%= f.submit "Guardar", {class: 'btn btn-primary botonLargo', id: 'btnGuardar'} %><br><br>
+					</div>
+				</div>
+				
+				<% end %>
+			</div>
+
+		</div>
+
+		<div class="row grey">
+			<div class="col-md-2 col-md-push-5">
+			</div>
+		</div>
+		
+<script>
+	$(document).ready(function(){
+		
+		
+		var tiposTrabajoSeleccionados = <%=raw( @tiposTrabajoSeleccionados.to_json( only:[:id_tipo_trabajo] ) ) %>;
+		//Indica si idTipoTrabajo está contenido en tiposTrabajoSeleccionados
+		function estaSeleccionado(idTipoTrabajo){
+			for(var i=0; i<tiposTrabajoSeleccionados.length; i++)
+				if(tiposTrabajoSeleccionados[i].id_tipo_trabajo == idTipoTrabajo)
+					return true;
+			return false;
+		}
+		
+		$(".opcion_categoria").change(function(){
+			actualizarTipos( $(this).val(), $(this).parent().find(".opcion_trabajo") );
+		});
+		
+		//Solicita tipos a servidor según categoría seleccionada
+		function actualizarTipos(idCategoria, selectDestino){
+			var parametros = {
+				url: 'get_tipos_trabajo_de_categoria',
+				type: 'GET',
+				data: {categoria : idCategoria}
+			};
+            var xhr = $.ajax(parametros);
+            xhr.done(function(json){
+                llenarTipos(json, selectDestino);
+            });
+            xhr.fail(function(jqXHR, textStatus, error){
+                alert("Ajax sin éxito:"+textStatus+", "+error);
+            });
+		}
+		
+		//Llena lista con tipos de trabajo indicados
+		function llenarTipos(json, selectDestino){
+			var $lista = $(selectDestino);
+			$lista.html(""); //Se borra la lista
+			$lista.append("<option value=''>--Selecciona servicio--</option>");
+			for(var i=0; i<json.length; i++)
+				$lista.append("<option value='"+json[i].id+"'>"+json[i].servicio+"</option>");
+		}
+		
+		var MAX_TIPOS_TRABAJO = <%=TiposTrabajo::MAX_OPCIONES_TRABAJO%>;
+		
+		$("#btnGuardar").click(function(e){
+			var numEscogidos = 0;
+			$(".opcion_trabajo").each(function(i){
+				if( $(this).val() != "" )
+					numEscogidos++;
+			});
+			
+			if(numEscogidos <=0){
+				e.preventDefault();
+				alert("Debe seleccionar al menos un servicio");
+				return;
+			}/*else if(escogidos > MAX_TIPOS_TRABAJO){
+				e.preventDefault();
+				alert("Ha seleccionado demasiadas opciones. El límite es "+ MAX_TIPOS_TRABAJO);
+				return;
+			}*/
+			//Continuar
+		});
+		
+	});
+</script>

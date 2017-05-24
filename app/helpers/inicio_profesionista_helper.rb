@@ -1,0 +1,2 @@
+module InicioProfesionistaHelper
+end

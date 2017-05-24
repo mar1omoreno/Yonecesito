@@ -1,0 +1,101 @@
+<%= render "panel"%>
+
+		<div class="row bckwhite">
+			<br>
+
+			<div class="col-md-10 col-md-push-1 bckwhite paddingtop">
+
+				<%= form_for current_cliente, url: {action: "guardar_contacto"}, html: {method: "post", class: ""} do |f| %>
+
+				<% if !notice.nil? %>
+				<p class="notice"><%= notice %></p>
+				<% end %>
+
+				<div class="form-group textareawidth">
+				    <label >Correo electrónico</label>
+				    <%= f.text_field :email, :class => 'form-control', disabled: true %>
+				</div>
+
+				<br>
+				<div class="form-inline">
+
+				  <div class="form-group">				  	
+				    <label >Teléfono local</label><br>
+				    <%= f.text_field :tel_fijo, :class => 'form-control', maxlength:10, pattern:'\d{10}', placeholder:'10 números' %>
+				  </div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+				  <div class="form-group">
+				    <label >Teléfono celular *</label><br>
+				    <%= f.text_field :tel_celular, :class => 'form-control', required: true, maxlength:10, pattern:'\d{10}', placeholder:'10 números' %>
+				  </div>
+		
+				</div>
+
+				<div class="form-group textareawidth">
+				    <label >Dirección </label>
+				    <%= f.text_field :direccion, :class => 'form-control', maxlength:100 %>
+				</div><br>
+
+				<div class="form-inline">
+				  <div class="form-group">
+				    <label >Estado</label><br>
+				    <%= select_tag 'cliente[estado_id]', options_for_select(@estados.collect { |estado|
+						[estado.descripcion.titleize, estado.id] }, @idEstadoActual), { id: 'estados_select', class:'form-control' } %>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label >Municipio</label><br>
+				    <%= select_tag 'cliente[ciudad_id]', options_for_select(@ciudades.collect { |ciudad|
+						[ciudad.descripcion.titleize, ciudad.id] }, @idCiudadActual), { id: 'ciudades_select', class:'form-control' } %>
+				  </div>
+
+				  <div class="form-group">
+				    <label >Código postal</label><br>
+				    <%= f.text_field :cp, :class => 'form-control', maxlength:5, pattern:'\d{3,5}', placeholder:'3-5 números' %>
+				  </div>
+				</div>
+
+				<p></p>
+
+				<div class="row paddingTop">
+					<div class="col-md-3 col-md-push-2">
+						<%= f.submit "Guardar", {class: 'btn btn-primary botonLargo', id: 'btnGuardar'} %>
+					</div>
+				</div>
+				
+				<% end %>
+
+			</div>
+
+		</div>
+
+		<div class="row grey">
+			<div class="col-md-2 col-md-push-5"></div>
+		</div>
+		
+<script>
+    $(document).ready(function(){
+        
+        $("#estados_select").change(function(){
+            var parametros = {
+				url: 'get_ciudades',
+				type: 'GET',
+				data: {estado_id: $(this).val()}
+			};
+            var xhr = $.ajax(parametros);
+            xhr.done(function(json){
+                llenarCiudades(json);
+            });
+            xhr.fail(function(jqXHR, textStatus, error){
+                alert("Ajax sin éxito:"+textStatus+", "+error);
+            });
+        });
+        
+        function llenarCiudades(json){
+            var $cmbCiudades = $("#ciudades_select");
+            $cmbCiudades.empty();
+            for(var i = 0; i<json.length; i++)
+                $cmbCiudades.append('<option value="'+json[i].id+'">'+json[i].descripcion+'</option>');
+        }
+    })
+</script>

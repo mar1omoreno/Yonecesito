@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Yo Necesito</title>
+  <%= favicon_link_tag %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+  <%= csrf_meta_tags %>
+</head>
+<body class="backgroundIMG">
+	<%= yield %>
+</body>
+</html>

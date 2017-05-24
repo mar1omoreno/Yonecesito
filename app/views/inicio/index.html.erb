@@ -1,0 +1,162 @@
+<div class="row">
+	<div class="col-md-12 imgBCK2">
+		<div class="col-md-2 col-md-push-4 paddingTopCall">
+			<a href="https://www.youtube.com/watch?v=AKfkR2xJPJM" class="youtube">
+				<%= image_tag "PlayButton.png", :alt => "Play", :title => "Play", style:" width:150px; height:150px;" %>
+			</a>
+		</div>
+		<div class="col-md-4 col-md-push-4 paddingTopCall whitelinks">
+			<h2 class="italic">¿Necesitas algo?<%=variable%></h2>
+			<h3>Profesionales listos para ayudarte</h3>
+		</div>
+		<div class="row">
+			<div class="col-md-3 paddingTopCallmax">
+				<p>					
+					<%= link_to "Yo necesito...", inicio_entra_path, {:class=>"btn btn-primary participarBTN1 bigButton", :style=>"font-size: 24px"} %>
+				</p>
+			</div>
+			<!--<div class="col-md-3 paddingTopCallmax">
+				<p>					
+					
+				</p>
+			</div>-->
+		</div>
+	</div>			
+</div>
+
+
+<div class="row ">
+	<div class=" bigtxt">
+		<p class="col-md-12 text-left greytxt">
+			¿Eres profesionista que quiere crecer su negocio?
+			<%= link_to "Regístrate como Pro", inicio_que_es_path, :class=>"btn btn-primary participarBTN1 bigButton" %>
+		</p>
+	</div>
+</div>
+
+<br>
+<br>
+
+
+<%= render "partialscp/categorias"%>
+
+<br>
+<br>
+<br>
+
+
+<div class="row top-buffer80">
+	<div class="col-md-3 col-md-offset-5 bigtxt">
+		<p class="text-left greytxt">¿Cómo <span class="blue"> funciona?</span></p>
+	</div>
+</div>
+
+
+<div class="row top-buffer30 paddingTopBottom grey">
+	<div class="col-md-5 col-md-offset-2 ">
+		<div class="row"><div class="col-md-12 bigtxt"><p class="greytxt">Cuéntanos <span class="blue">¿Qué necesitas?</span></p></div></div>
+		<div class="row no-gutter">
+			<div class="col-md-1  lineaAzul"></div>
+			<div class="col-md-11  lineaGris"></div>
+		</div>
+		<div class="row paddingTop">
+			<div class="col-md-1 ">
+				<p class="text-right">
+				<span class="fa-stack fa-lg">
+			      <i class="fa fa-circle fa-stack-2x"></i>
+			      <i class="fa fa-inverse fa-stack-1x">1</i>
+			    </span>
+				</p>
+			</div>
+			<div class="col-md-9">
+				 <p>Platícanos de manera detallada el servicio que necesitas con urgencia y en pocas horas te presentaremos profesionales que pueden realizar el trabajo</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<%= image_tag "/imagenes/step1.png", style:" width:200px;" %>
+	</div>
+</div>
+
+
+<div class="row top-buffer30 paddingTopBottom">
+	<div class="col-md-4 col-md-offset-2">
+		<%= image_tag "/imagenes/step2.png", style:" width:200px;" %>
+	</div>
+	<div class="col-md-4 col-md-offset-1 ">
+		<div class="row"><div class="col-md-12 bigtxt"><p class="greytxt">Compara <span class="blue">profesionistas</span></p></div></div>
+		<div class="row no-gutter">
+			<div class="col-md-1  lineaAzul"></div>
+			<div class="col-md-11  lineaGris"></div>
+		</div>
+		<div class="row paddingTop">
+			<div class="col-md-1 ">
+				<p class="text-right">
+				<span class="fa-stack fa-lg">
+			      <i class="fa fa-circle fa-stack-2x"></i>
+			      <i class="fa fa-inverse fa-stack-1x">2</i>
+			    </span>
+				</p>
+			</div>
+			<div class="col-md-9">
+				<p>Recibirás propuestas que incluyen:</p>
+				<p><i class="fa fa-usd fa-1x"></i>  Precio estimado</p>
+				<p><i class="fa fa-envelope-o fa-1x"></i> Mensaje personalizado</p>
+				<p><i class="fa fa-star fa-1x"></i> Calificaciones y recomendaciones</p>
+				<p><i class="fa fa-phone fa-1x"></i> Contacto del profesional</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="row top-buffer30 paddingTopBottom grey">
+	<div class="col-md-5 col-md-offset-2 ">
+		<div class="row"><div class="col-md-12 bigtxt"><p class="greytxt">Contrata al <span class="blue">mejor</span></p></div></div>
+		<div class="row no-gutter">
+			<div class="col-md-1  lineaAzul"></div>
+			<div class="col-md-11  lineaGris"></div>
+		</div>
+		<div class="row paddingTop">
+			<div class="col-md-1 ">
+				<p class="text-right">
+				<span class="fa-stack fa-lg">
+			      <i class="fa fa-circle fa-stack-2x"></i>
+			      <i class="fa fa-inverse fa-stack-1x">3</i>
+			    </span>
+				</p>
+			</div>
+			<div class="col-md-9">
+				 <p>Cuando estés listo contrata al profesionista con mejor experiencia y al precio que es justo para ti.</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<%= image_tag "/imagenes/step3.png", style:" width:200px;" %>
+	</div>
+</div>
+
+
+
+<div class="row top-buffer30">
+	<div class="col-md-7 col-md-offset-4">
+		<p class="greytxt bigtxt">¿Qué necesitas? <span class="blue smallFont">Cambia la manera en que buscas ayuda</span></p>
+	</div>
+</div>	
+<div class="row top-buffer80">
+	<div class="col-md-6 col-md-offset-3 text-center">		
+		<%= link_to "REGISTRATE", inicio_registrate_path, :class=>"btn btn-default outlineblue"%>
+	</div>
+</div>
+
+<br>
+<br>
+		
+		
+<%= javascript_include_tag 'bootstrap.youtubepopup.min' %>
+
+<script>
+	$(document).ready(function(){
+		$(".youtube").YouTubeModal({autoplay:1, width:854, height:510, useYouTubeTitle: false});
+	});
+</script>

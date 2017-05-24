@@ -1,0 +1,64 @@
+
+
+	<div class="container-fluid">
+
+		<div class="row">
+
+			<div class="col-md-2 col-md-push-1">
+				<a href="#">
+					<p>
+					<%= image_tag "logoblanco.png", :alt => "Logo", :title => "Logo", style:" width:167px; height:31px;" %>
+					</p>
+				</a>
+			</div>
+
+		</div>
+
+		<div class="row top-buffer80">
+
+			<div class="col-md-6 col-md-offset-1 whitelinks">
+				<h3>Conoce nuevos clientes</h3>
+				<h4>Encuentra nuevos clientes que están en busca de los servicios que ofreces en tu zona de trabajo. Envía presupuestos solo a los clientes de tu interés.</h4>
+			</div>
+
+		</div>
+
+		<div class="row top-buffer30">
+			<%= form_for :seleccion, url: {action: "filtroB"}, html: {method: "post"} do |f| %>
+			  <div class="col-md-3 col-md-offset-1">
+			  <%= f.select :categoria, 
+			    options_for_select(@categorias.collect { |cat| [cat.titleize, cat] }, 0), 
+			    {include_blank: 'Selecciona la categoría de tu profesión'}, { class: 'form-control' } %>
+			  </div>
+			  <div class="col-md-3 ">
+			  <%= f.submit "Empezar", {class: 'btn btn-primary creaCuenta', id: 'empezar'} %>
+			  </div>
+			<% end %>
+		</div>
+
+		<div class="row top-buffer30">
+
+			<div class="col-md-4 col-md-push-1">
+				<%= link_to "Aprende más de cómo funciona Yo Necesito", inicio_que_es_path %>
+			</div>
+
+		</div>
+
+		<%= render 'footer' %>
+
+	</div>
+
+<script>
+	$(document).ready(function(){
+		
+		$("#empezar").click(function(e){
+			if( $("#seleccion_categoria").val() == "" ){
+				e.preventDefault();
+				alert("Favor de seleccionar una cagetoría");
+				return;
+			}
+			//Continuar
+		});
+		
+	});
+</script>

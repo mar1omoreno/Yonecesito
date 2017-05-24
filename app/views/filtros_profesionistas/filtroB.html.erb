@@ -1,0 +1,63 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2 col-md-push-1">
+			<a href="#"><p><%= image_tag "logoblanco.png", :alt => "Logo", :title => "Logo", style:" width:167px; height:31px;" %></p></a>
+		</div>
+	</div>
+	<div class="row top-buffer80">
+		<div class="col-md-6 col-md-offset-1 whitelinks">
+		
+		</div>
+	</div>
+	<div class="row top-buffer30 greytxt">
+		
+		<%= form_for :servicios, url: {action: "filtroC"}, html: {method: "post"} do |f| %>
+		  <div class="col-md-9 col-md-push-1 paddingform grey greytxt">
+		  	<h2 class="biggertxt">¿Qué servicios de <span class="bluetxt"><%= @categoria%></span> puedes proveer?</h2>
+		  	<%= f.hidden_field :categoria, :value => @categoria %>
+		  	<% @tiposTrabajo.each do |trabajo| %>
+		  	<div class = "checkbox">
+		  		<label>
+		  			<input name="servicio[]" type="checkbox" value="<%=trabajo.id%>">
+		  			<%= trabajo.servicio %>
+		  		</label>
+		  	</div>
+		  	<% end %>
+		    <h2>
+		    	<a href="<%= url_for filtros_profesionistas_filtroA_path %>">
+		    		<i class="fa fa-arrow-left"></i> Regresar
+		    	</a>
+				<%= f.submit "Siguiente", {class: 'btn btn-primary', id: 'siguiente', style: 'margin-left:36em'} %>
+		    </h2>
+		  </div>
+		<% end %>
+		
+	</div>
+					
+	</div><br><br>
+
+	<%= render 'footer' %>
+
+</div>
+
+<script>
+	$(document).ready(function(){
+		
+		var MAX_TIPOS_TRABAJO = <%=TiposTrabajo::MAX_OPCIONES_TRABAJO%>;
+		
+		$("#siguiente").click(function(e){
+			var escogidos = $("input[type=checkbox]:checked").length;
+			if(escogidos <=0){
+				e.preventDefault();
+				alert("Debe seleccionar al menos una opción");
+				return;
+			}else if(escogidos > MAX_TIPOS_TRABAJO){
+				e.preventDefault();
+				alert("Ha seleccionado demasiadas opciones. El límite es "+ MAX_TIPOS_TRABAJO);
+				return;
+			}
+			//Continuar
+		});
+		
+	});
+</script>

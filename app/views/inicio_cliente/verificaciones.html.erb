@@ -1,0 +1,32 @@
+<%= render "panel"%>
+
+		<div class="row bckwhite">
+			<br>
+
+			<div class="col-md-10 col-md-push-1 bckwhite paddingtop">
+
+				<p>Verificaciones</p>
+				<p>Al verificar tus cuentas, ofreces una mayor seguridad y fiabilidad</p>
+				
+				<% if current_cliente.email_verificado == 1 %>
+					<p><button type="button" class="btn btn-primary">Correo verificado</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<% else %>
+					<a href = "<%= url_for '?enviar_email=1' %>">
+					<button type="button" class="btn btn-default">Enviar correo</button></p>
+					</a>
+				<% end %>
+				
+				<%= flash[:notice].nil? ? "" : flash[:notice]%>
+				
+				<br><br><br>
+
+			</div>
+
+		</div>
+
+		<div class="row grey">
+			<div class="col-md-2 col-md-push-5">
+				
+			</div>
+		</div>

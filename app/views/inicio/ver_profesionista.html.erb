@@ -1,0 +1,156 @@
+<div class="row grey paddingTop">
+	<div class="col-md-3 col-md-offset-1"><h4>Ver perfil</h4></div>
+	<div class="col-md-3 col-md-push-6"><a href="<%= url_for :back %>" ><span class="blue"><h4><i class="fa fa-arrow-left fa-lg"></i> Regresar</h4></span></a></div>
+</div>
+
+<!-- Título -->
+<div class="row grey text-left ">
+	<div class="col-md-5 col-md-offset-1 boldcrea">
+		<h4 class="boldcrea"><%= (@profesionista.empresa || "").titleize %> - <span class="blue"><%= @profesionista.nombre_completo %></span> </h4>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-1 col-md-push-1 lineaAzul"></div>
+	<div class="col-md-9 col-md-push-1 lineaGris"></div>
+</div>
+
+<!-- Foto y estrellas -->
+<div class="row">
+	<div class="col-md-6 col-md-offset-1 text-left paddingTop">
+		<div class="row no-gutter">
+
+			<div class="col-md-3">
+				<p><%= image_tag "/fotos_profesionistas/#{@profesionista.id}", {class: "avatar_foto"} %></p>
+			</div>
+
+			<div class="col-md-4 gris-oscuro">
+				<p><span class="blue"><i class="fa fa-home fa-lg2"></i></span> <%= @nombre_ciudad + ", " + @nombre_estado %></p>
+				<% if !profesionista_signed_in? # Para profesionista no tiene caso mostrarle sus datos %>
+				<p><span class="blue"><i class="fa fa-phone fa-lg2"></i></span> <%= @profesionista.tel_celular %></p>
+				<p><span class="blue"><i class="fa fa-globe fa-lg2"></i></span> <%= @profesionista.pagina_web %></p>
+				<!--<p><span class="blue"><i class="fa fa-facebook fa-lg"></i></span> www.fafafa.com</p>-->
+				<% end %>
+			</div>
+
+			<div class="col-md-5 col-md-push-7 ">
+				<%= @profesionista.get_html_calificacion().html_safe %>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- BIO Y RECONOCIMIENTOS -->
+<div class="row">
+
+	<div class="col-md-5 col-md-push-1">
+		<span class="blue"><h3>BIO</h3></span>
+		<p><%= (@profesionista.sobre_empresa || "").titleize %></p>
+
+		<!--<span class="blue"><h3>SERVICIOS</h3></span>
+		<p>.</p>-->
+	</div>
+
+    <!-- Reconocimientos -->
+	<div class="col-md-4 col-md-push-2">
+		<div class="row">
+			<span class="blue"><h3>RECONOCIMIENTOS</h3> </span>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6 bordereadaGris">
+					<span class="fa-stack fa-lg orange">
+					  <i class="fa fa-square fa-stack-2x"></i>
+					  <i class="fa fa-hand-o-right fa-stack-1x fa-inverse"></i>
+					</span>
+					Contratado <%= @contrataciones.length %> veces
+			</div>
+		</div>
+
+
+		<% if @profesionista.empresa.present? %>
+		<div class="row top-buffer10">
+			<div class="col-md-6 bordereadaGris">
+				<span class="fa-stack fa-lg yellow">
+				  <i class="fa fa-square fa-stack-2x"></i>
+				  <i class="fa fa-building fa-stack-1x fa-inverse"></i>
+				</span>
+				Perfil de empresa
+			</div>
+		</div>
+		<% else %>
+		<div class="row top-buffer10">
+			<div class="col-md-6 bordereadaGris">
+				<span class="fa-stack fa-lg yellow">
+				  <i class="fa fa-square fa-stack-2x"></i>
+				  <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+				</span>
+				Perfil de particular
+			</div>
+		</div>
+		<% end %>
+
+        <% if @profesionista.email_verificado == 1 %>
+		<div class="row top-buffer10">
+			<div class="col-md-6 bordereadaGris">
+				<span class="fa-stack fa-lg green">
+				  <i class="fa fa-square fa-stack-2x"></i>
+				  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+				</span>
+				Verificado por correo
+			</div>
+		</div>
+		<% end %>
+
+
+		<!--<div class="row top-buffer10">
+			<div class="col-md-6 bordereadaGris">
+				<span class="fa-stack fa-lg green">
+				  <i class="fa fa-square fa-stack-2x"></i>
+				  <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+				</span>
+				Perfil verificado
+			</div>
+		</div>-->
+	</div>
+</div>
+
+
+<!-- COMENTARIOS -->
+<% if @contrataciones.length > 0 %>
+<div class="row">
+	<div class="col-md-10 col-md-push-1">
+
+		<div class="row">
+			<div class="col-md-3">
+				<h3><span class="blue">COMENTARIOS</span></h3>
+			</div>
+		</div>
+
+        <!-- Ciclo de comentarios -->
+        <% @contrataciones.each do |contratacion| 
+        	cliente = Cliente.find( Evento.find(contratacion.id_evento).id_cliente )
+        %>
+		<div class="row">
+			<div class="col-md-1">
+				<%= image_tag "/fotos_clientes/#{cliente.id}", {class: "avatar_lista"} %>
+			</div>
+
+			<div class="col-md-11">
+				<p>
+					<%= Profesionista::get_html_estrellas(contratacion.calificacion_cliente, Profesionista::SIZE_ESTRELLAS_2 ).html_safe %>
+					<%= l contratacion.fecha_calificacion, format: :short %>
+				</p>
+				<p><%= contratacion.comentarios_cliente %></p>
+				<p class="boldcrea"><%= cliente.nombre_completo %></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-md-push lineaGris"></div>
+		</div>
+		<% end #fin ciclo comentarios %>
+
+	</div>
+</div>
+<% end %>

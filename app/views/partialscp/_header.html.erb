@@ -1,0 +1,81 @@
+<!-- Header para usuarios logeados -->
+<div class="row bckwhite" style="padding-top:10px;">
+	<% if cliente_signed_in? %>
+	<div class="col-md-2 col-md-offset-1">
+		<!--<a href="#"><img src="img/logo.png"></a>-->
+		<%= link_to image_tag("logo.png", :alt => "yonecesito", :title => "yonecesito"), inicio_cliente_index_path %>
+	</div>
+	<% else %>
+	<div class="col-md-2 col-md-offset-1">
+		<!--<a href="#"><img src="img/logo.png"></a>-->
+		<%= link_to image_tag("logo.png", :alt => "yonecesito", :title => "yonecesito"), inicio_profesionista_index_path %>
+	</div>
+	<% end %>
+	
+	<% if cliente_signed_in? %>
+	<div class="col-md-2 col-md-push-1" >
+		<%= link_to "Nuevo trabajo", inicio_cliente_categorias_path, :class=>"btn btn-primary participarBTN"%>
+	</div>
+	<% else %>
+	<div class="col-md-2 col-md-push-1" >				
+		<%= link_to "Buscar trabajo", inicio_profesionista_buscar_trabajo_path, :class=>"btn btn-primary participarBTN"%>
+	</div>
+	<% end %>
+	
+	<% if cliente_signed_in? %>
+	<div class="col-md-2 col-md-push-1" >
+		<%= link_to "Panel", inicio_cliente_index_path, :class=>"btn btn-primary participarBTN1"%>
+	</div>
+	<% else %>
+	<div class="col-md-2 col-md-push-1" >
+		<%= link_to "Panel", inicio_profesionista_index_path, :class=>"btn btn-primary participarBTN1"%>
+	</div>
+	<% end %>
+	
+	
+	<% if cliente_signed_in? %>
+	<div class="col-md-2 col-md-push-1" >
+		<% if Mensajes::hay_mensajes_nuevos_para_cliente(current_cliente.id) %>
+			<%= link_to image_tag("chat.svg", :alt => "chat", :title => "Hay mensajes nuevos", :class=>""), inicio_cliente_index_path %>
+		<% end %>
+	</div>
+	<% else %>
+	<div class="col-md-2 col-md-push-1" >
+		<% if Mensajes::hay_mensajes_nuevos_para_profesionista(current_profesionista.id) %>
+			<%= link_to image_tag("chat.svg", :alt => "chat", :title => "Hay mensajes nuevos", :class=>""), inicio_profesionista_index_path %>
+		<% end %>
+			<a href="<%=url_for creditos_index_path %>" class="btn"><i class="fa fa-money fa-3x"></i></a>
+	</div>
+	<% end %>
+	
+	
+	<% if cliente_signed_in? %>
+	<div class="col-md-2 blue" >
+		<div class="btn-group">
+			<button type="button" class="btn btn-default dropdown-toggle noBorder blue boldcrea" data-toggle="dropdown" aria-expanded="false">
+				<%= image_tag "/fotos_clientes/#{current_cliente.id}?t=#{Time.now.to_f}", {class: "avatar_lista"} %>
+				<%= (current_cliente.nombre || "").titleize %>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><%= link_to "Mi cuenta", inicio_cliente_datos_basicos_path %></li>
+				<li><%= link_to "Salir", destroy_cliente_session_path, :method => :delete %></li>
+			</ul>
+		</div>
+	</div>
+	<% else %>
+	<div class="col-md-2 blue" >
+		<div class="btn-group">
+			<button type="button" class="btn btn-default dropdown-toggle noBorder blue boldcrea" data-toggle="dropdown" aria-expanded="false">
+				<%= image_tag "/fotos_profesionistas/#{current_profesionista.id}?t=#{Time.now.to_f}", {class: "avatar_lista"} %>
+				<%= (current_profesionista.nombre || "").titleize %>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><%= link_to "Mi perfíl", inicio_ver_profesionista_path(id: current_profesionista.id) %></li>
+				<li><%= link_to "Mi cuenta", inicio_profesionista_datos_basicos_path %></li>
+				<li><%= link_to "Salir", destroy_profesionista_session_path, :method => :delete %></li>
+			</ul>
+		</div>
+	</div>
+	<% end %>
+	
+</div>

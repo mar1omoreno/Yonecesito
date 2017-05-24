@@ -1,0 +1,106 @@
+<p class="notice" style="<%= 'display:none;' if notice.nil? %>" ><%= notice %></p>
+<p class="alert" style="<%= 'display:none' if alert.nil? %>" ><%= alert %></p>
+
+<p>Ciudad de usuario es <%=@idCiudadUsuario%> </p>
+<p>Estado actual es <%=@idEstadoActual%> </p>
+
+Opciones
+<%= form_for :geografico, url: {action: "guardar"}, html: {method: "post"} do |f| %>
+  <%= f.select :estado_id, options_for_select(@estados.collect { |estado|
+    [estado.descripcion.titleize, estado.id] }, @idEstadoActual), {}, { id: 'estados_select' } %>
+    
+  <%= f.select :ciudad_id, options_for_select(@ciudades.collect { |ciudad|
+    [ciudad.descripcion.titleize, ciudad.id] }, @idCiudadUsuario), {}, { id: 'ciudades_select' } %>
+  <%= f.submit "Guardar datos" %>
+<% end %>
+
+<script>
+    $(document).ready(function(){
+        
+        $("#estados_select").change(function(){
+            var parametros = {
+				url: 'get_ciudades',
+				/*cache: false,
+				contentType: false,
+				processData: false,*/
+				type: 'GET',
+				data: {estado_id: $(this).val()}
+			};
+            var xhr = $.ajax(parametros);
+            xhr.done(function(json){
+                llenarCiudades(json);
+            });
+            xhr.fail(function(jqXHR, textStatus, error){
+                alert("Ajax sin éxito:"+textStatus+", "+error);
+            });
+        });
+        
+        /**
+         * @param json Arreglo de ciudades de la forma [{"id":"1","descripcion":"Tuxtla"}, {}, {}]
+         */
+        function llenarCiudades(json){
+            var $cmbCiudades = $("#ciudades_select");
+            $cmbCiudades.empty();
+            for(var i = 0; i<json.length; i++)
+                $cmbCiudades.append('<option value="'+json[i].id+'">'+json[i].descripcion+'</option>');
+        }
+        
+        var plantilla_json = <%=@tipoTrabajo.plantilla_json%>;
+        
+        function dibujarPlantila(){
+            //... interpretación y generación de inputs/selects/radios/checkbox contenidos en plantilla_json
+            for(var i = 0; i<plantilla_json.length; i++){
+                var pregunta = plantilla_json[i];
+                if(pregunta.tipo == "texto"){
+                    //...generación de textbox
+                }else if(pregunta.tipo == "checkbox"){
+                    //...generación de checkboxes
+                    var $contenedorPregunta = $("<div/>");
+                    for(int j=0; j< pregunta.opciones.length; j++){
+                        //... lista de strings que se convierten en checkbox
+                        $contendorPregunta.append("<input type='checkbox' id='' name='' value='"+pregunta.opciones[j]+"' />"+pregunta.opciones[j]);
+                    }
+                }else if(pregunta.tipo == "radio"){
+                    //....
+                }else if(pregunta.tipo == "select"){
+                    //....
+                }
+            }
+        }
+        
+        //dibujarPlantila();
+        
+        /**
+         * Genera respuestas de la plantilla_json del tipo de trabajo para guardarlas en base de datos. 
+         * Así, cuando un Profesionista vea detalles del evento de trabajo, se le imprimirá el contenido generado
+         * por esta función
+         * Ejemplo de salida:
+         * [ {"pregunta":"¿Cuántas paredes?", "respuestas": ["5"] },
+         *   {"pregunta":"¿Cómo te sientes?", "respuestas": ["Bien!"] },
+         *   {"pregunta":"¿Qué comidas te gutan?", "respuestas": ["Chocolate","Tacos","Ensaladas"] }
+         * ]
+         */
+        function generarPlantillaJsonCompleta(){
+            //.. Ciclo para recabar respuestas a preguntas pintadas con dibujarPlantilla()
+            
+            var respuestas = [];
+            //.. al final del ciclo tenemos una estructura con N respuestas contenidas en un arreglo similar al comentario de la función
+            var stringJsonFinal = JSON.stringify(respuestas);
+            //.. al hacer POST con AJAX de TODAS las respuestas, se incluye stringJsonFinal en los datos
+        }
+        
+        function enviarSolicitud(){
+            //... validaciones que se necesiten
+            var parametros = {
+				url: 'get_ciudades',
+				/*cache: false,
+				contentType: false,
+				processData: false,*/
+				type: 'GET',
+				data: { respuestas : generarPlantillaJsonCompleta(), masDatos : 1234 }
+			};
+            // $.ajax(parametros)
+        }
+    })
+    
+</script>

@@ -1,0 +1,119 @@
+<%= render "panel"%>
+
+
+		<div class="row bckwhite">
+			<br>
+
+			<div class="col-md-10 col-md-push-1">
+				<p>Mis servicios</p>
+				<p>Agrega los servicios que puedes proveer. Te avisaremos cada que se soliciten más trabajos.</p>
+				<p>Solo puedes escoger servicios de una sola categoría</p>
+			</div>
+
+			<div class="col-md-10 col-md-push-1 bckwhite paddingtop">
+
+				<%= form_for :servicios, url: {action: "guardar_servicios"}, html: {method: "post", class:''} do |f| %>
+
+				<% if !notice.nil? %>
+				<p class="notice"><%= notice %></p>
+				<% end %>
+				
+				  <div class="form-group form-inline">
+				    <label >Categoría</label><br>
+				    <%= select_tag :categoria, options_for_select(@categorias.collect { |categoria|
+						[categoria.titleize, categoria] }, @categoriaActual), { id: 'categoria_select', class:'form-control' } %>
+				  </div> 
+
+				  <div id="listaTipos">
+				  </div>
+		
+				<br>
+
+				<p></p>
+
+				<div class="row paddingTop">
+					<div class="col-md-3 col-md-push-2">
+						<%= f.submit "Guardar", {class: 'btn btn-primary botonLargo', id: 'btnGuardar'} %><br><br>
+					</div>
+				</div>
+				
+				<% end %>
+			</div>
+
+		</div>
+
+		<div class="row grey">
+			<div class="col-md-2 col-md-push-5">
+			</div>
+		</div>
+		
+<script>
+	$(document).ready(function(){
+		
+		
+		var tiposTrabajoSeleccionados = <%=raw( @tiposTrabajoSeleccionados.to_json( only:[:id_tipo_trabajo] ) ) %>;
+		//Indica si idTipoTrabajo está contenido en tiposTrabajoSeleccionados
+		function estaSeleccionado(idTipoTrabajo){
+			for(var i=0; i<tiposTrabajoSeleccionados.length; i++)
+				if(tiposTrabajoSeleccionados[i].id_tipo_trabajo == idTipoTrabajo)
+					return true;
+			return false;
+		}
+		
+		$("#categoria_select").change(function(){
+			actualizarTipos();
+		});
+		
+		//Solicita tipos a servidor según categoría seleccionada
+		function actualizarTipos(){
+			var parametros = {
+				url: 'get_tipos_trabajo_de_categoria',
+				type: 'GET',
+				data: {categoria : $("#categoria_select").val()}
+			};
+            var xhr = $.ajax(parametros);
+            xhr.done(function(json){
+                llenarTipos(json);
+            });
+            xhr.fail(function(jqXHR, textStatus, error){
+                alert("Ajax sin éxito:"+textStatus+", "+error);
+            });
+		}
+		
+		//Llena lista de checkboxes nuevos con tipos indicados
+		function llenarTipos(json){
+			var $lista = $("#listaTipos");
+			$lista.html(""); //Se borra la lista
+			for(var i=0; i<json.length; i++){
+				var id = json[i].id;
+				var checado = estaSeleccionado(id) ? 'checked = "true" ' : '';
+				var $check = $("<label />");
+				$check.append('<input type="checkbox" name="servicio[]" value="'+id+'" '+checado+' />');
+				$check.append(json[i].servicio)
+				var $div = $('<div class="checkbox" />');
+				$div.append($check);
+				$lista.append($div);
+				//$lista.append($check);
+			}
+		}
+		
+		actualizarTipos();
+		
+		var MAX_TIPOS_TRABAJO = <%=TiposTrabajo::MAX_OPCIONES_TRABAJO%>;
+		
+		$("#btnGuardar").click(function(e){
+			var escogidos = $("input[type=checkbox]:checked").length;
+			if(escogidos <=0){
+				e.preventDefault();
+				alert("Debe seleccionar al menos una opción");
+				return;
+			}else if(escogidos > MAX_TIPOS_TRABAJO){
+				e.preventDefault();
+				alert("Ha seleccionado demasiadas opciones. El límite es "+ MAX_TIPOS_TRABAJO);
+				return;
+			}
+			//Continuar
+		});
+		
+	});
+</script>

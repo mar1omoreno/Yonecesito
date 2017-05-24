@@ -1,0 +1,170 @@
+<style>
+	.botones_navegacion a:hover span {text-shadow: 2px 3px 3px rgba(0,0,0,1);}
+</style>
+
+<div class="row top-buffer10 botones_navegacion">
+	<div class="col-md-2 col-md-offset-2 text-center">
+		<a href="#" id="hogar">
+			<span class="fa-stack fa-3x">
+		      <i class="fa fa-circle fa-stack-2x"></i>
+		      <i class="fa fa-home fa-inverse fa-stack-1x"></i>
+		    </span> Hogar
+		</a>				 
+	</div>
+	<div class="col-md-2 text-center">
+		<a href="#" id="eventos">
+			<span class="fa-stack fa-3x">
+		      <i class="fa fa-circle fa-stack-2x"></i>
+		      <i class="fa fa-camera fa-inverse fa-stack-1x"></i>
+		    </span> Eventos</a>
+	</div>
+	<div class="col-md-2 text-center">
+		<a href="#" id="bienestar">
+			<span class="fa-stack fa-3x">
+		      <i class="fa fa-circle fa-stack-2x"></i>
+		      <i class="fa fa-heart fa-inverse fa-stack-1x"></i>
+		    </span> Bienestar</a>
+	</div>
+	<div class="col-md-2 text-center">
+		<a href="#" id="educacion">
+			<span class="fa-stack fa-3x">
+		      <i class="fa fa-circle fa-stack-2x"></i>
+		      <i class="fa fa-pencil fa-inverse fa-stack-1x"></i>
+		    </span> Educación</a>
+	</div>
+</div>
+
+
+
+
+<div class="hogar categoria">
+	<div id="margin60">
+		<div class="row no-gutter top-buffer30 text-center">
+			<% @hogar.each do |trabajo| %>
+				<div class="col-md-3 col-md-offset-1 paddingTop">
+					<a href="<%= url_for inicio_cliente_solicitar_servicios_path(:id_servicio=>trabajo.id) %>" class="link-trabajo">
+						<p class="blue"><%= trabajo.servicio %></p>
+						<% if trabajo.nombre_imagen.nil?%>
+							<%= image_tag("imagen_trabajos/generica.jpg", :alt => trabajo.servicio, :title => trabajo.servicio, style:" width:257px; height:171px;") %>
+						<% else %>							
+							<%= image_tag("imagen_trabajos/hogar/#{trabajo.nombre_imagen}", :alt => trabajo.servicio, :title => trabajo.servicio, style:" width:257px; height:171px;") %>
+						<% end %>
+						<span class="btn btn-primary" >Solicitar</span>
+					</a>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<div class="eventos categoria">
+	<div id="margin60">
+		<div class="row no-gutter top-buffer30 text-center">
+			<% @eventos.each do |trabajo| %>
+				<div class="col-md-3 col-md-offset-1 paddingTop">
+					<a href="<%= url_for inicio_cliente_solicitar_servicios_path(:id_servicio=>trabajo.id) %>" class="link-trabajo">
+						<p class="blue"><%= trabajo.servicio %></p>
+						<% if trabajo.nombre_imagen.nil?%>
+							<%= image_tag("imagen_trabajos/generica.jpg", :alt => trabajo.servicio, :title => trabajo.servicio, style:" width:257px; height:171px;") %>
+						<% else %>							
+							<%= image_tag("imagen_trabajos/eventos/#{trabajo.nombre_imagen}", :alt => trabajo.servicio, :title => trabajo.servicio, style:" width:257px; height:171px;") %>
+						<% end %>
+						<span class="btn btn-primary" >Solicitar</span>
+					</a>
+				</div>
+			<% end %>
+		</div>
+	</div>
+
+</div>
+
+<div class="bienestar categoria">
+	<div id="margin60">
+		<div class="row no-gutter top-buffer30 text-center">
+			<% @bienestar.each do |trabajo| %>
+				<div class="col-md-3 col-md-offset-1 paddingTop">
+					<a href="<%= url_for inicio_cliente_solicitar_servicios_path(:id_servicio=>trabajo.id) %>" class="link-trabajo">
+						<p class="blue"><%= trabajo.servicio %></p>
+						<% if trabajo.nombre_imagen.nil?%>
+							<%= image_tag("imagen_trabajos/generica.jpg", :alt => trabajo.servicio, :title => trabajo.servicio, style:" width:257px; height:171px;") %>
+						<% else %>							
+							<%= image_tag("imagen_trabajos/bienestar/#{trabajo.nombre_imagen}", :alt => trabajo.servicio, :title => trabajo.servicio, style:" width:257px; height:171px;") %>
+						<% end %>
+						<span class="btn btn-primary" >Solicitar</span>
+					</a>
+				</div>
+			<% end %>
+		</div>
+	</div>
+
+</div>
+
+<div class="educacion categoria">
+	<div id="margin60">
+		<div class="row no-gutter top-buffer30 text-center">
+			<% @educacion.each do |trabajo| %>
+				<div class="col-md-3 col-md-offset-1 paddingTop">
+					<a href="<%= url_for inicio_cliente_solicitar_servicios_path(:id_servicio=>trabajo.id) %>" class="link-trabajo">
+						<p class="blue"><%= trabajo.servicio %></p>
+						<% if trabajo.nombre_imagen.nil?%>
+							<%= image_tag("imagen_trabajos/generica.jpg", :alt => trabajo.servicio, :title => trabajo.servicio, style:" width:257px; height:171px;") %>
+						<% else %>							
+							<%= image_tag("imagen_trabajos/clases/#{trabajo.nombre_imagen}", :alt => trabajo.servicio, :title => trabajo.servicio, style:" width:257px; height:171px;") %>
+						<% end %>
+						<span class="btn btn-primary" >Solicitar</span>
+					</a>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+<br>
+
+
+<script>
+	$(document).ready(function(){
+		
+			
+		$(".categoria").hide();
+		$(".hogar").show();
+		var divActual = ".hogar";
+		
+		/**
+		 * Hace swap de categorías visibles 
+		 */
+		function verCategoria(div){
+			if(divActual != null){
+				$(divActual).fadeOut('slow', function(){
+					divActual = div;
+					$(divActual).fadeIn('slow');
+				} );
+			}else{
+				divActual = div;
+				$(divActual).fadeIn('slow');
+			}
+		}
+		
+		$("#hogar").click(function(e){
+			e.preventDefault();
+			verCategoria(".hogar");
+		});
+			
+		$("#eventos").click(function(e){
+			e.preventDefault();
+			verCategoria(".eventos");
+		});
+		$("#bienestar").click(function(e){
+			e.preventDefault();
+			verCategoria(".bienestar");
+		});		
+		$("#educacion").click(function(e){
+			e.preventDefault();
+			verCategoria(".educacion");
+		});
+		
+	
+	});
+	
+</script>

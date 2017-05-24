@@ -1,0 +1,135 @@
+<div class="row grey text-left paddingTop">
+
+	<div class="col-md-3 col-md-offset-1 boldcrea"><h4 class="boldcrea">Buscar nuevos trabajos</h4></div>
+
+	<div class="col-md-3 col-md-offset-5">
+		<span class="blue">
+		    <h4>
+		        <%= link_to raw('<i class="fa fa-arrow-left fa-lg"></i> Regresar'), inicio_profesionista_index_path %>
+		    </h4>
+		</span>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-md-1 col-md-push-1 lineaAzul"></div>
+	<div class="col-md-9 col-md-push-1 lineaGris"></div>
+</div>
+
+<div class="row">
+	<div class="col-md-10 col-md-push-1">
+		<p>Aquí puedes ver los trabajos que requieren ayuda de un profesional. Aplica a los que más te gusten.</p>
+	</div>
+</div>
+
+<!-- Filtros -->
+<div class="row paddingBottom">
+	<div class="col-md-10 col-md-push-1 darkBlue">
+		<div class="row">
+		    <%= form_for :filtro, url: {action: "buscar_trabajo"}, html: {method: "get", class:'whitelinks'} do |f| %>
+              <div class="col-md-3 col-md-push-1">
+				<div class="form-group">				  	
+				    <label >Estado</label><br>
+				    <%= f.select :estado_id, options_for_select(@estados.collect { |estado|
+                      [estado.descripcion.titleize, estado.id] }, @idEstadoActual), {}, 
+                      { id: 'estados_select', class: 'form-control widthLarge' } %>
+        		</div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	  </div>
+              
+              <div class="col-md-3 col-md-push-1">
+				<div class="form-group">				  	
+				    <label >Ciudad</label><br>
+				    <%= f.select :ciudad_id, options_for_select(@ciudades.collect { |ciudad|
+                      [ciudad.descripcion.titleize, ciudad.id] }, @idCiudadActual), {}, 
+                      { id: 'ciudades_select', class: 'form-control widthLarge' } %>
+        		</div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	  </div>
+                
+              <div class="col-md-3 col-md-push-3 text-center">
+    			<br>
+    			<%= f.submit "Buscar", class: 'btn btn-primary botonMedio' %>
+    			<br><br>
+    		  </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<!-- Ciclo de resultados -->
+<% if @eventos.length <= 0 %>
+    <div class="row">
+        <div class="col-md-10 col-md-push-1 bckwhite bordereadaGris">
+    <% if @tiposTrabajo.length <= 0 %>
+        Aún no ha seleccionado sus tipos de trabajo preferidos. Puede hacerlo 
+        <%= link_to 'aquí', inicio_profesionista_panel_servicios_path %>
+    <% else %>
+        No se encontraron trabajos en la ciudad especificada para sus tipos de trabajo
+    	<ul>
+    	    <% @tiposTrabajo.each do |tipo| %>
+    	    <li><%= TiposTrabajo.find( tipo.id_tipo_trabajo ).servicio %></li>
+    	    <% end %>
+    	</ul>
+	<% end %>
+	    </div>
+	</div>
+<% else %>
+    <% @eventos.each do |evento| 
+        cliente = Cliente.find(evento.id_cliente)
+        nombre_trabajo = TiposTrabajo.where( id: evento.id_tipo_trabajo ).pluck(:servicio).first
+        ciudad = CiudadesRepublica.where( id: evento.id_ciudad_republica ).first
+        nombre_estado = EstadosRepublica.where( id: ciudad.id_estado ).pluck(:descripcion).first
+    %>
+        <div class="row">
+        	<div class="col-md-10 col-md-push-1 bckwhite bordereadaGris">
+        		<div class="row"><br>
+        			<div class="col-md-1"> <%= image_tag "/fotos_clientes/#{cliente.id}", {class: "avatar_lista"} %><!--<img src="img/picsi.png">--> </div>
+        			<div class="col-md-2">
+        				<p><%= cliente.nombre_completo.titleize %></p>
+        				<!--<p><i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i></p>-->
+        			</div>
+        			<div class="col-md-2"><!-- class="col-md-3" -->
+        				<span class="blue"><h3><%= nombre_trabajo.titleize %></h3></span>
+        			</div>
+        			<div class="col-md-4"><!-- class="col-md-2" -->
+        				<p>Creado <%= l evento.fecha_alta, format: :short%>, 
+        				Finaliza <%= l evento.fecha, format: :short %></p>
+        				<p>Lugar: <%= ciudad.descripcion.titleize %>, <%= nombre_estado %></p>
+        			</div>
+        			<div class="col-md-3 text-center"><!-- class="col-md-3 col-md-push-1 text-center" -->
+        			    <%= link_to "Aplicar", trabajo_profesionista_ver_path(id_evento: evento.id), :class=>"btn btn-primary botonMedio" %>
+        				<br><br>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+    <% end %>
+<% end %>
+
+
+<script>
+    $(document).ready(function(){
+        
+        $("#estados_select").change(function(){
+            var parametros = {
+				url: 'get_ciudades',
+				type: 'GET',
+				data: {estado_id: $(this).val()}
+			};
+            var xhr = $.ajax(parametros);
+            xhr.done(function(json){
+                llenarCiudades(json);
+            });
+            xhr.fail(function(jqXHR, textStatus, error){
+                alert("Ajax sin éxito:"+textStatus+", "+error);
+            });
+        });
+        
+        function llenarCiudades(json){
+            var $cmbCiudades = $("#ciudades_select");
+            $cmbCiudades.empty();
+            for(var i = 0; i<json.length; i++)
+                $cmbCiudades.append('<option value="'+json[i].id+'">'+json[i].descripcion+'</option>');
+        }
+    })
+</script>
