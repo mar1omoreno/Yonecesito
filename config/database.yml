@@ -8,23 +8,23 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: dbyonecesito
-  password: dbyonecesitopwd
-  host: ec2-52-24-113-99.us-west-2.compute.amazonaws.com
+  username: 
+  password: 
+  host: 
   port: 3306
 
 development:
   <<: *default
-  database: yonecesito
+  database: 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: yonecesito_test
+  database: 
 
 production:
   <<: *default
-  database: yonecesito
-  host: yonecesito.cule0pr30etx.us-west-2.rds.amazonaws.com
+  database: 
+  host: 
